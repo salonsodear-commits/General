@@ -46,7 +46,7 @@ Orden de lectura: primero esta guía (sección A→D), después pegás las medid
 Pegá las consultas **en este orden** (cada una depende de las anteriores):
 
 1. `stgOrigen`
-2. `stgJessiCruda`
+2. `stgRealPA`
 3. `stgBaseRealCruda`
 4. `DIM_Vertical`
 5. `DIM_Cuenta`
@@ -87,9 +87,9 @@ El modelo está pensado para que actualizar sea trivial:
 
 ### Condiciones que el archivo nuevo DEBE cumplir (si no, se rompe)
 - Las hojas se llaman **exactamente** `REAL vs PA 2025 2026` y `Base Real`.
-- En la hoja de Jessi, el **encabezado sigue en la fila 3** (filas 1 y 2 vacías).
+- En la hoja Real vs PA, el **encabezado sigue en la fila 3** (filas 1 y 2 vacías).
 - Los **nombres de columna no cambian** (`Vertical`, `Cuenta`, `Denominación Cuenta`, `Ceco`,
-  `Denominación Rubro`, `mes año`, `Monto Real`, `Monto PA` en Jessi; y `VERTICAL`,
+  `Denominación Rubro`, `mes año`, `Monto Real`, `Monto PA` en la hoja Real vs PA; y `VERTICAL`,
   `Clase de coste`, `Centro de coste`, `Denominacion cuenta contrapartida`, `Valor/mon.inf.`,
   `mes año`, `cuenta ceco`, `Texto` en Base Real).
 - `mes año` sigue siendo una fecha (primer día del mes).

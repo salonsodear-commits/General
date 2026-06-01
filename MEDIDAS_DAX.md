@@ -11,7 +11,7 @@
 
 ## Bloque 1 — Real vs PA del mes
 
-**`Real Mes`** — Real agregado del presupuesto (tabla de Jessi). Es el Real "oficial"
+**`Real Mes`** — Real agregado del presupuesto (tabla Real vs PA). Es el Real "oficial"
 que compara contra PA, al mismo grano.
 ```dax
 Real Mes = SUM(FACT_Presupuesto[MontoReal])
@@ -87,7 +87,7 @@ Real Detalle = SUM(FACT_RealDetalle[MontoReal])
 
 Son **dos Real distintos**, de dos tablas distintas, y NO tienen por qué dar igual:
 
-- **`[Real Mes]`** sale de `FACT_Presupuesto` (tabla de Jessi). Es el Real **agregado** y
+- **`[Real Mes]`** sale de `FACT_Presupuesto` (tabla Real vs PA). Es el Real **agregado** y
   conciliado contra el presupuesto, al grano cuenta-ceco-mes. **Usalo siempre que compares
   contra PA** (variaciones, acumulados, páginas Resumen y Aperturas).
 
@@ -95,7 +95,7 @@ Son **dos Real distintos**, de dos tablas distintas, y NO tienen por qué dar ig
   con apertura por proveedor. **Usalo solo en la página de Detalle Proveedores**, donde no hay
   PA que comparar.
 
-Pueden diferir por criterios de armado de la tabla de Jessi (ajustes, exclusiones, reclasificaciones).
+Pueden diferir por criterios de armado de la tabla Real vs PA (ajustes, exclusiones, reclasificaciones).
 Por eso **no mezcles** `[Real Detalle]` con `[PA Mes]` en el mismo visual: el comparativo
 oficial Real vs PA es siempre con `[Real Mes]`.
 

@@ -51,9 +51,9 @@ lo interpreta como libro y deja una tabla con todas las hojas.
 
 ---
 
-## 2) `stgJessiCruda` — hoja "REAL vs PA 2025 2026"  *(Habilitar carga = NO)*
+## 2) `stgRealPA` — hoja "REAL vs PA 2025 2026"  *(Habilitar carga = NO)*
 
-Toma la hoja de Jessi, que tiene el **encabezado en la fila 3** (filas 1 y 2 vacías),
+Toma la hoja Real vs PA, que tiene el **encabezado en la fila 3** (filas 1 y 2 vacías),
 limpia columnas vacías y renombra sin tildes ni espacios.
 
 ```m
@@ -124,7 +124,7 @@ let
         "Denominacion cuenta contrapartida", "Valor/mon.inf.",
         "mes año", "cuenta ceco", "Texto"
     }),
-    // Renombra a nombres limpios y alineados con la tabla de Jessi.
+    // Renombra a nombres limpios y alineados con la tabla Real vs PA.
     Renombrar = Table.RenameColumns(Seleccion, {
         {"VERTICAL", "Vertical"},
         {"Clase de coste", "Cuenta"},
@@ -133,7 +133,7 @@ let
         {"Valor/mon.inf.", "MontoReal"},
         {"mes año", "Fecha"}
     }),
-    // Normaliza texto igual que en Jessi (clave para que matcheen los IDs).
+    // Normaliza texto igual que en la hoja Real vs PA (clave para que matcheen los IDs).
     Normalizar = Table.TransformColumns(Renombrar, {
         {"Vertical", each Text.Upper(Text.Trim(_)), type text},
         {"Cuenta", each Text.Trim(Text.From(_)), type text},
@@ -154,7 +154,7 @@ in
     FiltroFecha
 ```
 
-**Pasos clave:** misma normalización de texto que Jessi (si no, los IDs no matchearían);
+**Pasos clave:** misma normalización de texto que en la hoja Real vs PA (si no, los IDs no matchearían);
 `FiltroFecha` recorta el histórico pre-2025.
 
 ---
@@ -169,9 +169,9 @@ in
 ```m
 let
     // Junta verticales de ambas fuentes para no perder ninguna.
-    Jessi = Table.SelectColumns(stgJessiCruda, {"Vertical"}),
+    FuentePA = Table.SelectColumns(stgRealPA, {"Vertical"}),
     Real = Table.SelectColumns(stgBaseRealCruda, {"Vertical"}),
-    Union = Table.Combine({Jessi, Real}),
+    Union = Table.Combine({FuentePA, Real}),
     // Quita duplicados.
     Distinct = Table.Distinct(Union),
     SinNulos = Table.SelectRows(Distinct, each [Vertical] <> null and [Vertical] <> ""),
@@ -186,11 +186,11 @@ in
 ## 5) `DIM_Cuenta`
 
 Una fila por **Cuenta** con su denominación y rubro. La cuenta es la clave; tomamos la
-descripción de Jessi (que es la "oficial" del presupuesto).
+descripción de la tabla Real vs PA (que es la "oficial" del presupuesto).
 
 ```m
 let
-    Base = Table.SelectColumns(stgJessiCruda, {"Cuenta", "DenominacionCuenta", "Rubro"}),
+    Base = Table.SelectColumns(stgRealPA, {"Cuenta", "DenominacionCuenta", "Rubro"}),
     Distinct = Table.Distinct(Base),
     SinNulos = Table.SelectRows(Distinct, each [Cuenta] <> null and [Cuenta] <> ""),
     // Si una cuenta apareciera con 2 descripciones, nos quedamos con la primera.
@@ -205,18 +205,18 @@ in
     Tipos
 ```
 
-> Nota: si la Base Real tuviera cuentas que no están en Jessi, no aparecerían acá. Como
+> Nota: si la Base Real tuviera cuentas que no están en la tabla Real vs PA, no aparecerían acá. Como
 > filtramos el Real a 2025+ y el presupuesto cubre ese período, en la práctica el catálogo
-> de cuentas de Jessi es el correcto. Si querés blindarlo, podés unir cuentas de ambas
+> de cuentas de la tabla Real vs PA es el correcto. Si querés blindarlo, podés unir cuentas de ambas
 > fuentes igual que en `DIM_Vertical`.
 
 ## 6) `DIM_Ceco`
 
 ```m
 let
-    Jessi = Table.SelectColumns(stgJessiCruda, {"Ceco"}),
+    FuentePA = Table.SelectColumns(stgRealPA, {"Ceco"}),
     Real = Table.SelectColumns(stgBaseRealCruda, {"Ceco"}),
-    Union = Table.Combine({Jessi, Real}),
+    Union = Table.Combine({FuentePA, Real}),
     Distinct = Table.Distinct(Union),
     SinNulos = Table.SelectRows(Distinct, each [Ceco] <> null and [Ceco] <> ""),
     Ordenado = Table.Sort(SinNulos, {{"Ceco", Order.Ascending}}),
@@ -252,9 +252,9 @@ let
     // Fecha mínima fija (alineada con el presupuesto).
     FechaInicio = #date(2025, 1, 1),
     // Fecha máxima = el mes más grande entre las dos fuentes de hechos.
-    MaxJessi = List.Max(stgJessiCruda[Fecha]),
+    MaxPA = List.Max(stgRealPA[Fecha]),
     MaxReal = List.Max(stgBaseRealCruda[Fecha]),
-    FechaFin = List.Max({MaxJessi, MaxReal}),
+    FechaFin = List.Max({MaxPA, MaxReal}),
     // Cantidad de meses entre inicio y fin.
     MesesTotales = (Date.Year(FechaFin) - Date.Year(FechaInicio)) * 12
                    + (Date.Month(FechaFin) - Date.Month(FechaInicio)) + 1,
@@ -295,7 +295,7 @@ Real **agregado** + PA, al grano Cuenta+Ceco+Vertical+Mes. No tiene proveedor.
 
 ```m
 let
-    Base = stgJessiCruda,
+    Base = stgRealPA,
     // --- Vertical -> VerticalID ---
     JoinVert = Table.NestedJoin(Base, {"Vertical"}, DIM_Vertical, {"Vertical"}, "dV", JoinKind.LeftOuter),
     ExpVert = Table.ExpandTableColumn(JoinVert, "dV", {"VerticalID"}),
@@ -372,7 +372,7 @@ filtre las dos fact a la vez de forma coherente.
 
 # PASO 2 — Versión rápida (alternativa): `BASE_PLANA_RealvsPA`
 
-Tabla única ya limpia, desde la hoja de Jessi. Es la solución express: una sola tabla,
+Tabla única ya limpia, desde la hoja Real vs PA. Es la solución express: una sola tabla,
 sin modelo. **Limitaciones:** no permite drill a proveedor (no tiene ese dato) y al ser una
 sola tabla plana perdés la flexibilidad del modelo estrella (medidas time-intelligence menos
 limpias, slicers duplicados, etc.). Si usás el modelo estrella, dejá esta consulta **sin
@@ -414,7 +414,7 @@ in
 
 | Consulta | ¿Carga al modelo? |
 |---|---|
-| `stgOrigen`, `stgJessiCruda`, `stgBaseRealCruda` | **NO** (auxiliares, prefijo stg) |
+| `stgOrigen`, `stgRealPA`, `stgBaseRealCruda` | **NO** (auxiliares, prefijo stg) |
 | `DIM_Vertical`, `DIM_Cuenta`, `DIM_Ceco`, `DIM_Proveedor`, `DIM_Calendario` | SÍ |
 | `FACT_Presupuesto`, `FACT_RealDetalle` | SÍ |
 | `BASE_PLANA_RealvsPA` | NO si usás el modelo estrella (es la alternativa express) |
