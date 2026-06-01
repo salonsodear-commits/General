@@ -31,18 +31,16 @@ table DIM_Cuenta
 
 		annotation SummarizationSetBy = Automatic
 
-	calculatedColumn CAPEX_OPEX
+	column CAPEX_OPEX
 		dataType: string
-		expression: "OPEX"
 		summarizeBy: none
 		lineageTag: f1a2b3c4-d5e6-7890-abcd-ef1234567890
 		displayFolder: Clasificación
 
 		annotation SummarizationSetBy = Automatic
 
-	calculatedColumn CO_GT
+	column CO_GT
 		dataType: string
-		expression: SWITCH(TRUE(), DIM_Cuenta[Rubro] = "BENEFICIOS AL PERSONAL", "CO", DIM_Cuenta[Rubro] = "GASTOS DE RODADOS Y EQUIPOS", "CO", DIM_Cuenta[Rubro] = "HONORARIOS, SERVICIOS CC", "CO", DIM_Cuenta[Rubro] = "MANTENIMIENTO", "CO", "GT")
 		summarizeBy: none
 		lineageTag: a9b8c7d6-e5f4-3210-fedc-ba9876543210
 		displayFolder: Clasificación
@@ -59,9 +57,13 @@ table DIM_Cuenta
 			    AgrupadoUnico = Table.Distinct(SinNulos, {"Cuenta"}),
 			    Ordenado = Table.Sort(AgrupadoUnico, {{"Cuenta", Order.Ascending}}),
 			    ConID = Table.AddIndexColumn(Ordenado, "CuentaID", 1, 1, Int64.Type),
-			    Tipos = Table.TransformColumnTypes(ConID, {
+			    ConCapexOpex = Table.AddColumn(ConID, "CAPEX_OPEX", each "OPEX", type text),
+			    RubrosCO = {"BENEFICIOS AL PERSONAL", "GASTOS DE RODADOS Y EQUIPOS", "HONORARIOS, SERVICIOS CC", "MANTENIMIENTO"},
+			    ConCoGt = Table.AddColumn(ConCapexOpex, "CO_GT", each if List.Contains(RubrosCO, [Rubro]) then "CO" else "GT", type text),
+			    Tipos = Table.TransformColumnTypes(ConCoGt, {
 			        {"CuentaID", Int64.Type}, {"Cuenta", type text},
-			        {"DenominacionCuenta", type text}, {"Rubro", type text}
+			        {"DenominacionCuenta", type text}, {"Rubro", type text},
+			        {"CAPEX_OPEX", type text}, {"CO_GT", type text}
 			    })
 			in
 			    Tipos
