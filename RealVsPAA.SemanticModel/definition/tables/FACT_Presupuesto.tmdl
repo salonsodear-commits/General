@@ -69,7 +69,6 @@ table FACT_Presupuesto
 
 	column VerticalID
 		dataType: int64
-		isKey
 		summarizeBy: none
 		formatString: 0
 		lineageTag: 9cf03855-b5e7-42fe-9055-6fa89e145746
@@ -78,7 +77,6 @@ table FACT_Presupuesto
 
 	column CuentaID
 		dataType: int64
-		isKey
 		summarizeBy: none
 		formatString: 0
 		lineageTag: 10f7166f-2478-44bb-bc3c-bd747d0c8037
@@ -87,7 +85,6 @@ table FACT_Presupuesto
 
 	column CecoID
 		dataType: int64
-		isKey
 		summarizeBy: none
 		formatString: 0
 		lineageTag: 29e010dc-5e42-4659-82d0-c316c0836599

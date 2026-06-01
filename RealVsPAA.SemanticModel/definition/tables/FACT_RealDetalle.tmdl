@@ -16,7 +16,6 @@ table FACT_RealDetalle
 
 	column VerticalID
 		dataType: int64
-		isKey
 		summarizeBy: none
 		formatString: 0
 		lineageTag: e423d843-83e4-42eb-9476-ffbd437164f0
@@ -25,7 +24,6 @@ table FACT_RealDetalle
 
 	column CuentaID
 		dataType: int64
-		isKey
 		summarizeBy: none
 		formatString: 0
 		lineageTag: a69fd58e-1fb6-4ef1-9543-734a30f45d7d
@@ -34,7 +32,6 @@ table FACT_RealDetalle
 
 	column CecoID
 		dataType: int64
-		isKey
 		summarizeBy: none
 		formatString: 0
 		lineageTag: 8a5b3838-8904-426b-ad7b-91f6e5b6e7a9
@@ -43,7 +40,6 @@ table FACT_RealDetalle
 
 	column ProveedorID
 		dataType: int64
-		isKey
 		summarizeBy: none
 		formatString: 0
 		lineageTag: 2a80a1d8-e3c8-47dc-8251-c2c26c573d5e
