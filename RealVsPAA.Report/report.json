@@ -1,21 +1,6 @@
 {
   "id": 0,
-  "resourcePackages": [
-    {
-      "resourcePackage": {
-        "name": "SharedResources",
-        "type": 2,
-        "items": [
-          {
-            "name": "CY24SU10",
-            "path": "BaseThemes/CY24SU10.json",
-            "type": 202
-          }
-        ],
-        "disabled": false
-      }
-    }
-  ],
+  "resourcePackages": [],
   "config": "{\"version\": \"5.43\", \"activeSectionIndex\": 0, \"defaultDrillFilterOtherVisuals\": true, \"settings\": {\"useStylableVisualContainerHeader\": true}}",
   "layoutOptimization": 0,
   "sections": [
