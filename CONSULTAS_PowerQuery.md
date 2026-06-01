@@ -30,7 +30,7 @@ Nuevo parámetro*:
 
 ---
 
-## 1) `_Origen` — conexión al libro  *(Habilitar carga = NO)*
+## 1) `stgOrigen` — conexión al libro  *(Habilitar carga = NO)*
 
 Conecta al `.xlsx` y devuelve la lista de hojas. Es la base que reutilizan las demás.
 
@@ -47,18 +47,18 @@ in
 **Pasos clave:** `File.Contents(pRutaArchivo)` abre el binario; `Excel.Workbook(...)`
 lo interpreta como libro y deja una tabla con todas las hojas.
 
-> Clic derecho sobre `_Origen` → desmarcar **Habilitar carga** (no va al modelo).
+> Clic derecho sobre `stgOrigen` → desmarcar **Habilitar carga** (no va al modelo).
 
 ---
 
-## 2) `_JessiCruda` — hoja "REAL vs PA 2025 2026"  *(Habilitar carga = NO)*
+## 2) `stgJessiCruda` — hoja "REAL vs PA 2025 2026"  *(Habilitar carga = NO)*
 
 Toma la hoja de Jessi, que tiene el **encabezado en la fila 3** (filas 1 y 2 vacías),
 limpia columnas vacías y renombra sin tildes ni espacios.
 
 ```m
 let
-    Origen = _Origen,
+    Origen = stgOrigen,
     // Selecciona la hoja por su nombre EXACTO.
     Hoja = Origen{[Item="REAL vs PA 2025 2026", Kind="Sheet"]}[Data],
     // Quita las 2 primeras filas vacías -> la fila de encabezado queda arriba de todo.
@@ -106,7 +106,7 @@ nombres; `SelectColumns` tira lo que no sirve; `Text.Upper(Text.Trim(...))` evit
 
 ---
 
-## 3) `_BaseRealCruda` — hoja "Base Real"  *(Habilitar carga = NO)*
+## 3) `stgBaseRealCruda` — hoja "Base Real"  *(Habilitar carga = NO)*
 
 Toma el detalle transaccional (encabezado normal en fila 1) y se queda solo con las
 columnas de interés. **Aplica el filtro de fecha `>= 2025-01-01`** para alinear con el
@@ -114,7 +114,7 @@ presupuesto (decisión validada).
 
 ```m
 let
-    Origen = _Origen,
+    Origen = stgOrigen,
     Hoja = Origen{[Item="Base Real", Kind="Sheet"]}[Data],
     // Encabezado normal en la fila 1.
     Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
@@ -169,8 +169,8 @@ in
 ```m
 let
     // Junta verticales de ambas fuentes para no perder ninguna.
-    Jessi = Table.SelectColumns(_JessiCruda, {"Vertical"}),
-    Real = Table.SelectColumns(_BaseRealCruda, {"Vertical"}),
+    Jessi = Table.SelectColumns(stgJessiCruda, {"Vertical"}),
+    Real = Table.SelectColumns(stgBaseRealCruda, {"Vertical"}),
     Union = Table.Combine({Jessi, Real}),
     // Quita duplicados.
     Distinct = Table.Distinct(Union),
@@ -190,7 +190,7 @@ descripción de Jessi (que es la "oficial" del presupuesto).
 
 ```m
 let
-    Base = Table.SelectColumns(_JessiCruda, {"Cuenta", "DenominacionCuenta", "Rubro"}),
+    Base = Table.SelectColumns(stgJessiCruda, {"Cuenta", "DenominacionCuenta", "Rubro"}),
     Distinct = Table.Distinct(Base),
     SinNulos = Table.SelectRows(Distinct, each [Cuenta] <> null and [Cuenta] <> ""),
     // Si una cuenta apareciera con 2 descripciones, nos quedamos con la primera.
@@ -214,8 +214,8 @@ in
 
 ```m
 let
-    Jessi = Table.SelectColumns(_JessiCruda, {"Ceco"}),
-    Real = Table.SelectColumns(_BaseRealCruda, {"Ceco"}),
+    Jessi = Table.SelectColumns(stgJessiCruda, {"Ceco"}),
+    Real = Table.SelectColumns(stgBaseRealCruda, {"Ceco"}),
     Union = Table.Combine({Jessi, Real}),
     Distinct = Table.Distinct(Union),
     SinNulos = Table.SelectRows(Distinct, each [Ceco] <> null and [Ceco] <> ""),
@@ -232,7 +232,7 @@ Solo existe en la Base Real (el presupuesto no tiene proveedor).
 
 ```m
 let
-    Base = Table.SelectColumns(_BaseRealCruda, {"Proveedor"}),
+    Base = Table.SelectColumns(stgBaseRealCruda, {"Proveedor"}),
     Distinct = Table.Distinct(Base),
     SinNulos = Table.SelectRows(Distinct, each [Proveedor] <> null and [Proveedor] <> ""),
     Ordenado = Table.Sort(SinNulos, {{"Proveedor", Order.Ascending}}),
@@ -252,8 +252,8 @@ let
     // Fecha mínima fija (alineada con el presupuesto).
     FechaInicio = #date(2025, 1, 1),
     // Fecha máxima = el mes más grande entre las dos fuentes de hechos.
-    MaxJessi = List.Max(_JessiCruda[Fecha]),
-    MaxReal = List.Max(_BaseRealCruda[Fecha]),
+    MaxJessi = List.Max(stgJessiCruda[Fecha]),
+    MaxReal = List.Max(stgBaseRealCruda[Fecha]),
     FechaFin = List.Max({MaxJessi, MaxReal}),
     // Cantidad de meses entre inicio y fin.
     MesesTotales = (Date.Year(FechaFin) - Date.Year(FechaInicio)) * 12
@@ -295,7 +295,7 @@ Real **agregado** + PA, al grano Cuenta+Ceco+Vertical+Mes. No tiene proveedor.
 
 ```m
 let
-    Base = _JessiCruda,
+    Base = stgJessiCruda,
     // --- Vertical -> VerticalID ---
     JoinVert = Table.NestedJoin(Base, {"Vertical"}, DIM_Vertical, {"Vertical"}, "dV", JoinKind.LeftOuter),
     ExpVert = Table.ExpandTableColumn(JoinVert, "dV", {"VerticalID"}),
@@ -325,7 +325,7 @@ Detalle transaccional con proveedor. Grano = asiento. Real solamente (sin PA).
 
 ```m
 let
-    Base = _BaseRealCruda,
+    Base = stgBaseRealCruda,
     JoinVert = Table.NestedJoin(Base, {"Vertical"}, DIM_Vertical, {"Vertical"}, "dV", JoinKind.LeftOuter),
     ExpVert = Table.ExpandTableColumn(JoinVert, "dV", {"VerticalID"}),
     JoinCta = Table.NestedJoin(ExpVert, {"Cuenta"}, DIM_Cuenta, {"Cuenta"}, "dC", JoinKind.LeftOuter),
@@ -380,7 +380,7 @@ habilitar carga**.
 
 ```m
 let
-    Origen = _Origen,
+    Origen = stgOrigen,
     Hoja = Origen{[Item="REAL vs PA 2025 2026", Kind="Sheet"]}[Data],
     QuitarFilasSup = Table.Skip(Hoja, 2),
     Encabezados = Table.PromoteHeaders(QuitarFilasSup, [PromoteAllScalars=true]),
@@ -414,7 +414,7 @@ in
 
 | Consulta | ¿Carga al modelo? |
 |---|---|
-| `_Origen`, `_JessiCruda`, `_BaseRealCruda` | **NO** (auxiliares, empiezan con `_`) |
+| `stgOrigen`, `stgJessiCruda`, `stgBaseRealCruda` | **NO** (auxiliares, prefijo stg) |
 | `DIM_Vertical`, `DIM_Cuenta`, `DIM_Ceco`, `DIM_Proveedor`, `DIM_Calendario` | SÍ |
 | `FACT_Presupuesto`, `FACT_RealDetalle` | SÍ |
 | `BASE_PLANA_RealvsPA` | NO si usás el modelo estrella (es la alternativa express) |

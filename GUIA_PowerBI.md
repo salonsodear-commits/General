@@ -37,7 +37,7 @@ Orden de lectura: primero esta guía (sección A→D), después pegás las medid
 8. Con la consulta nueva seleccionada → **Inicio → Editor avanzado**.
 9. Borrá todo lo que haya y **pegá el bloque de código** completo. **Aceptar**.
 10. **Renombrá** la consulta (panel izquierdo, clic derecho → *Cambiar nombre*) con el
-    nombre exacto del título (ej. `_Origen`, `DIM_Vertical`, etc.).
+    nombre exacto del título (ej. `stgOrigen`, `DIM_Vertical`, etc.).
 
 ---
 
@@ -45,9 +45,9 @@ Orden de lectura: primero esta guía (sección A→D), después pegás las medid
 
 Pegá las consultas **en este orden** (cada una depende de las anteriores):
 
-1. `_Origen`
-2. `_JessiCruda`
-3. `_BaseRealCruda`
+1. `stgOrigen`
+2. `stgJessiCruda`
+3. `stgBaseRealCruda`
 4. `DIM_Vertical`
 5. `DIM_Cuenta`
 6. `DIM_Ceco`
@@ -58,7 +58,7 @@ Pegá las consultas **en este orden** (cada una depende de las anteriores):
 11. `BASE_PLANA_RealvsPA` *(solo si querés la versión express; si no, ni la pegues)*
 
 ### Marcar las auxiliares como "No cargar"
-Las que empiezan con `_` (y `BASE_PLANA_RealvsPA` si no la usás) no deben ir al modelo:
+Las que empiezan con `stg` (y `BASE_PLANA_RealvsPA` si no la usás) no deben ir al modelo:
 - Clic derecho sobre la consulta → desmarcá **Habilitar carga** (queda en cursiva).
 
 > Esto evita tablas basura en el modelo y acelera el refresco.
