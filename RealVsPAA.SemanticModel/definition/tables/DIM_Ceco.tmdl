@@ -1,0 +1,34 @@
+table DIM_Ceco
+	lineageTag: 99a8fbfb-9517-4fd2-8d0b-1f30f32633f5
+
+	column CecoID
+		dataType: int64
+		isKey
+		summarizeBy: none
+		formatString: 0
+		lineageTag: b1f4a747-8571-40e7-9c2b-a570048c694b
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ceco
+		dataType: string
+		summarizeBy: none
+		lineageTag: 788c1be4-0c8d-41c5-a262-005e48805542
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_Ceco = m
+		mode: import
+		source =
+			let
+			    FuentePA = Table.SelectColumns(stgRealPA, {"Ceco"}),
+			    Real = Table.SelectColumns(stgBaseRealCruda, {"Ceco"}),
+			    Union = Table.Combine({FuentePA, Real}),
+			    Distinct = Table.Distinct(Union),
+			    SinNulos = Table.SelectRows(Distinct, each [Ceco] <> null and [Ceco] <> ""),
+			    Ordenado = Table.Sort(SinNulos, {{"Ceco", Order.Ascending}}),
+			    ConID = Table.AddIndexColumn(Ordenado, "CecoID", 1, 1, Int64.Type),
+			    Tipos = Table.TransformColumnTypes(ConID, {{"CecoID", Int64.Type}, {"Ceco", type text}})
+			in
+			    Tipos
+

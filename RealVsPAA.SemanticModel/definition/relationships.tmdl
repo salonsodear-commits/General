@@ -1,0 +1,36 @@
+relationship 8fc27996-c04a-404e-9e7c-251615d484ef
+	fromColumn: FACT_Presupuesto.Fecha
+	toColumn: DIM_Calendario.Fecha
+
+relationship cef3251f-e4db-4f83-9964-53ed7e290346
+	fromColumn: FACT_RealDetalle.Fecha
+	toColumn: DIM_Calendario.Fecha
+
+relationship 5f6c930d-afea-4ee4-9900-09b77f65390b
+	fromColumn: FACT_Presupuesto.VerticalID
+	toColumn: DIM_Vertical.VerticalID
+
+relationship 5534ce2f-2347-418b-b599-aef502911a66
+	fromColumn: FACT_RealDetalle.VerticalID
+	toColumn: DIM_Vertical.VerticalID
+
+relationship 08887263-aaea-4958-ba46-efe1ca7abdcb
+	fromColumn: FACT_Presupuesto.CuentaID
+	toColumn: DIM_Cuenta.CuentaID
+
+relationship 56a2aacf-420b-43c0-82e9-b39768daeb8b
+	fromColumn: FACT_RealDetalle.CuentaID
+	toColumn: DIM_Cuenta.CuentaID
+
+relationship 9f6834ba-9d8e-47e3-a014-10f83c4ce7ca
+	fromColumn: FACT_Presupuesto.CecoID
+	toColumn: DIM_Ceco.CecoID
+
+relationship e73ff5e1-b85a-4e7e-a988-96388d77219e
+	fromColumn: FACT_RealDetalle.CecoID
+	toColumn: DIM_Ceco.CecoID
+
+relationship 2be51405-c1c9-4f45-9c39-92e22fec637f
+	fromColumn: FACT_RealDetalle.ProveedorID
+	toColumn: DIM_Proveedor.ProveedorID
+

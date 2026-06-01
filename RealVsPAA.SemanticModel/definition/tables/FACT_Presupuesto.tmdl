@@ -1,0 +1,133 @@
+table FACT_Presupuesto
+	lineageTag: 485f1e8f-75e1-403e-87ae-0d5c55a6256c
+
+	measure 'Real Mes' = SUM(FACT_Presupuesto[MontoReal])
+		formatString: #,0
+		displayFolder: 01 Real vs PA
+		lineageTag: df00c7c8-3a82-46b5-8af7-a9bd16e55fa6
+
+	measure 'PA Mes' = SUM(FACT_Presupuesto[MontoPA])
+		formatString: #,0
+		displayFolder: 01 Real vs PA
+		lineageTag: 2dd452c4-c6d9-4547-b135-ca641ae53db0
+
+	measure 'Variación' = [Real Mes] - [PA Mes]
+		formatString: #,0
+		displayFolder: 01 Real vs PA
+		lineageTag: 87f121f8-14a8-48b9-8185-221a0e2ee188
+
+	measure 'Variación %' = DIVIDE([Variación], [PA Mes])
+		formatString: 0.0%
+		displayFolder: 01 Real vs PA
+		lineageTag: fb75cb45-0975-410c-a246-b7bc3a7bac55
+
+	measure 'Real Acumulado' = CALCULATE([Real Mes], DATESYTD(DIM_Calendario[Fecha]))
+		formatString: #,0
+		displayFolder: 02 Acumulado
+		lineageTag: 3e3954d3-3a54-494c-ac5c-ce6633dda6d6
+
+	measure 'PA Acumulado' = CALCULATE([PA Mes], DATESYTD(DIM_Calendario[Fecha]))
+		formatString: #,0
+		displayFolder: 02 Acumulado
+		lineageTag: e48d3220-fda9-489c-b5ca-a2aeef142268
+
+	measure 'Variación Acum' = [Real Acumulado] - [PA Acumulado]
+		formatString: #,0
+		displayFolder: 02 Acumulado
+		lineageTag: 932db2c8-e69d-4db5-86d3-734a16fc2828
+
+	measure 'Real Año Anterior' = CALCULATE([Real Mes], SAMEPERIODLASTYEAR(DIM_Calendario[Fecha]))
+		formatString: #,0
+		displayFolder: 03 Interanual
+		lineageTag: 769153bc-54bc-4635-b947-2c6900e874a4
+
+	measure 'Var vs Año Anterior' = [Real Mes] - [Real Año Anterior]
+		formatString: #,0
+		displayFolder: 03 Interanual
+		lineageTag: cae1d97a-6318-4220-8559-1d08e2120945
+
+	measure 'Variación % fmt' = ```
+			VAR v = [Variación %]
+			RETURN IF(ISBLANK(v), "—", FORMAT(v, "+0.0%;-0.0%"))
+			```
+		displayFolder: 04 Formato
+		lineageTag: e250ff05-9f1f-4854-93a8-fca847fe7b56
+
+	measure 'Color Variación' = ```
+			IF([Variación] > 0, "#C00000", "#1F7A1F")
+			```
+		displayFolder: 04 Formato
+		lineageTag: f8854171-0432-4122-a759-c42c4e21baf2
+
+	column Fecha
+		dataType: dateTime
+		summarizeBy: none
+		formatString: dd/mm/yyyy
+		lineageTag: b4776632-8e24-4139-976d-1b9baf1d09e3
+
+		annotation SummarizationSetBy = Automatic
+
+	column VerticalID
+		dataType: int64
+		isKey
+		summarizeBy: none
+		formatString: 0
+		lineageTag: 9cf03855-b5e7-42fe-9055-6fa89e145746
+
+		annotation SummarizationSetBy = Automatic
+
+	column CuentaID
+		dataType: int64
+		isKey
+		summarizeBy: none
+		formatString: 0
+		lineageTag: 10f7166f-2478-44bb-bc3c-bd747d0c8037
+
+		annotation SummarizationSetBy = Automatic
+
+	column CecoID
+		dataType: int64
+		isKey
+		summarizeBy: none
+		formatString: 0
+		lineageTag: 29e010dc-5e42-4659-82d0-c316c0836599
+
+		annotation SummarizationSetBy = Automatic
+
+	column MontoReal
+		dataType: double
+		summarizeBy: sum
+		formatString: #,0
+		lineageTag: 01ef816a-24da-4ee8-9af5-7b104f3c5b4d
+
+		annotation SummarizationSetBy = Automatic
+
+	column MontoPA
+		dataType: double
+		summarizeBy: sum
+		formatString: #,0
+		lineageTag: 7f952fcc-59e3-4625-a3fd-18a165e7a02b
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FACT_Presupuesto = m
+		mode: import
+		source =
+			let
+			    Base = stgRealPA,
+			    JoinVert = Table.NestedJoin(Base, {"Vertical"}, DIM_Vertical, {"Vertical"}, "dV", JoinKind.LeftOuter),
+			    ExpVert = Table.ExpandTableColumn(JoinVert, "dV", {"VerticalID"}),
+			    JoinCta = Table.NestedJoin(ExpVert, {"Cuenta"}, DIM_Cuenta, {"Cuenta"}, "dC", JoinKind.LeftOuter),
+			    ExpCta = Table.ExpandTableColumn(JoinCta, "dC", {"CuentaID"}),
+			    JoinCeco = Table.NestedJoin(ExpCta, {"Ceco"}, DIM_Ceco, {"Ceco"}, "dCe", JoinKind.LeftOuter),
+			    ExpCeco = Table.ExpandTableColumn(JoinCeco, "dCe", {"CecoID"}),
+			    Final = Table.SelectColumns(ExpCeco, {"Fecha", "VerticalID", "CuentaID", "CecoID", "Monto Real", "Monto PA"}),
+			    Renombrar = Table.RenameColumns(Final, {{"Monto Real", "MontoReal"}, {"Monto PA", "MontoPA"}}),
+			    Tipos = Table.TransformColumnTypes(Renombrar, {
+			        {"Fecha", type date}, {"VerticalID", Int64.Type},
+			        {"CuentaID", Int64.Type}, {"CecoID", Int64.Type},
+			        {"MontoReal", type number}, {"MontoPA", type number}
+			    })
+			in
+			    Tipos
+

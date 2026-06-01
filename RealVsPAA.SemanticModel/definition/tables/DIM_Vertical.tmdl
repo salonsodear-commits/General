@@ -1,0 +1,34 @@
+table DIM_Vertical
+	lineageTag: 79895589-607a-4461-94e9-8634fac71463
+
+	column VerticalID
+		dataType: int64
+		isKey
+		summarizeBy: none
+		formatString: 0
+		lineageTag: 38561ecb-80bf-4585-bd2c-6bfce2202418
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vertical
+		dataType: string
+		summarizeBy: none
+		lineageTag: d6c965f0-8df2-4a8b-a5ba-ecf8a43c603e
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_Vertical = m
+		mode: import
+		source =
+			let
+			    FuentePA = Table.SelectColumns(stgRealPA, {"Vertical"}),
+			    Real = Table.SelectColumns(stgBaseRealCruda, {"Vertical"}),
+			    Union = Table.Combine({FuentePA, Real}),
+			    Distinct = Table.Distinct(Union),
+			    SinNulos = Table.SelectRows(Distinct, each [Vertical] <> null and [Vertical] <> ""),
+			    Ordenado = Table.Sort(SinNulos, {{"Vertical", Order.Ascending}}),
+			    ConID = Table.AddIndexColumn(Ordenado, "VerticalID", 1, 1, Int64.Type),
+			    Tipos = Table.TransformColumnTypes(ConID, {{"VerticalID", Int64.Type}, {"Vertical", type text}})
+			in
+			    Tipos
+

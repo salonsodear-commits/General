@@ -1,0 +1,50 @@
+table DIM_Cuenta
+	lineageTag: d315a799-3390-4f90-8d96-afa22af6b453
+
+	column CuentaID
+		dataType: int64
+		isKey
+		summarizeBy: none
+		formatString: 0
+		lineageTag: 341438e9-9113-44c4-91b0-6b1a3dcb7729
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cuenta
+		dataType: string
+		summarizeBy: none
+		lineageTag: c360b4b3-59fc-4861-a597-9d67c51b6675
+
+		annotation SummarizationSetBy = Automatic
+
+	column DenominacionCuenta
+		dataType: string
+		summarizeBy: none
+		lineageTag: e76613be-e653-4ba2-8d08-69c058cc2387
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rubro
+		dataType: string
+		summarizeBy: none
+		lineageTag: a0e2c281-37c5-4da3-94a8-4cbb4ce0713b
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_Cuenta = m
+		mode: import
+		source =
+			let
+			    Base = Table.SelectColumns(stgRealPA, {"Cuenta", "DenominacionCuenta", "Rubro"}),
+			    Distinct = Table.Distinct(Base),
+			    SinNulos = Table.SelectRows(Distinct, each [Cuenta] <> null and [Cuenta] <> ""),
+			    AgrupadoUnico = Table.Distinct(SinNulos, {"Cuenta"}),
+			    Ordenado = Table.Sort(AgrupadoUnico, {{"Cuenta", Order.Ascending}}),
+			    ConID = Table.AddIndexColumn(Ordenado, "CuentaID", 1, 1, Int64.Type),
+			    Tipos = Table.TransformColumnTypes(ConID, {
+			        {"CuentaID", Int64.Type}, {"Cuenta", type text},
+			        {"DenominacionCuenta", type text}, {"Rubro", type text}
+			    })
+			in
+			    Tipos
+

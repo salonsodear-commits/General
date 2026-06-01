@@ -1,0 +1,72 @@
+table DIM_Calendario
+	lineageTag: 073ecc55-4498-47b0-a545-953ffb5dd645
+
+	column Fecha
+		dataType: dateTime
+		summarizeBy: none
+		formatString: dd/mm/yyyy
+		lineageTag: f94e7721-3353-4e32-9579-9788b1a12461
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Año'
+		dataType: int64
+		summarizeBy: none
+		formatString: 0
+		lineageTag: dabae286-e0a2-41f7-8dd5-4d1fbc6326f7
+
+		annotation SummarizationSetBy = Automatic
+
+	column NroMes
+		dataType: int64
+		summarizeBy: none
+		formatString: 0
+		lineageTag: bfb15137-ca64-4cad-9def-e3bd4902a509
+
+		annotation SummarizationSetBy = Automatic
+
+	column NombreMes
+		dataType: string
+		summarizeBy: none
+		lineageTag: f02dd7c6-7b5e-4fb8-abfd-b1681b9b1194
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MesAño'
+		dataType: string
+		summarizeBy: none
+		sortByColumn: AñoMesOrden
+		lineageTag: 05e64f5d-fb91-4299-bfde-20d6bab49edd
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AñoMesOrden'
+		dataType: int64
+		summarizeBy: none
+		formatString: 0
+		lineageTag: b07f5c90-ce3b-495c-8307-e24529acb551
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_Calendario = m
+		mode: import
+		source =
+			let
+			    FechaInicio = #date(2025, 1, 1),
+			    MaxPA = List.Max(stgRealPA[Fecha]),
+			    MaxReal = List.Max(stgBaseRealCruda[Fecha]),
+			    FechaFin = List.Max({MaxPA, MaxReal}),
+			    MesesTotales = (Date.Year(FechaFin) - Date.Year(FechaInicio)) * 12
+			                   + (Date.Month(FechaFin) - Date.Month(FechaInicio)) + 1,
+			    ListaFechas = List.Transform({0..MesesTotales - 1}, each Date.AddMonths(FechaInicio, _)),
+			    Tabla = Table.FromList(ListaFechas, Splitter.SplitByNothing(), {"Fecha"}),
+			    TipoFecha = Table.TransformColumnTypes(Tabla, {{"Fecha", type date}}),
+			    ConAnio = Table.AddColumn(TipoFecha, "Año", each Date.Year([Fecha]), Int64.Type),
+			    ConNroMes = Table.AddColumn(ConAnio, "NroMes", each Date.Month([Fecha]), Int64.Type),
+			    ConNombreMes = Table.AddColumn(ConNroMes, "NombreMes", each Text.Proper(Date.MonthName([Fecha], "es-ES")), type text),
+			    ConMesAnio = Table.AddColumn(ConNombreMes, "MesAño",
+			        each Text.Proper(Text.Start(Date.MonthName([Fecha], "es-ES"), 3)) & "-" & Text.End(Text.From(Date.Year([Fecha])), 2), type text),
+			    ConOrden = Table.AddColumn(ConMesAnio, "AñoMesOrden", each Date.Year([Fecha]) * 100 + Date.Month([Fecha]), Int64.Type)
+			in
+			    ConOrden
+
