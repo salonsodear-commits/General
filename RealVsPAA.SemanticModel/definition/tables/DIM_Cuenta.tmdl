@@ -31,6 +31,37 @@ table DIM_Cuenta
 
 		annotation SummarizationSetBy = Automatic
 
+	column CAPEX_OPEX
+		dataType: string
+		isDataTypeInferred
+		calculatedColumnExpression: ```
+			"OPEX"
+			```
+		summarizeBy: none
+		lineageTag: f1a2b3c4-d5e6-7890-abcd-ef1234567890
+		displayFolder: Clasificación
+
+		annotation SummarizationSetBy = Automatic
+
+	column CO_GT
+		dataType: string
+		isDataTypeInferred
+		calculatedColumnExpression: ```
+			SWITCH(
+			    TRUE(),
+			    DIM_Cuenta[Rubro] = "BENEFICIOS AL PERSONAL",    "CO",
+			    DIM_Cuenta[Rubro] = "GASTOS DE RODADOS Y EQUIPOS", "CO",
+			    DIM_Cuenta[Rubro] = "HONORARIOS, SERVICIOS CC",   "CO",
+			    DIM_Cuenta[Rubro] = "MANTENIMIENTO",              "CO",
+			    "GT"
+			)
+			```
+		summarizeBy: none
+		lineageTag: a9b8c7d6-e5f4-3210-fedc-ba9876543210
+		displayFolder: Clasificación
+
+		annotation SummarizationSetBy = Automatic
+
 	partition DIM_Cuenta = m
 		mode: import
 		source =
