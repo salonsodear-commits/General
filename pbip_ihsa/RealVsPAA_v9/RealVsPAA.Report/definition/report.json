@@ -55,8 +55,8 @@
           "type": "CustomTheme"
         },
         {
-          "name": "fondo_03_operativa.png",
-          "path": "RegisteredResources/fondo_03_operativa.png",
+          "name": "fondo_04_proveedores.png",
+          "path": "RegisteredResources/fondo_04_proveedores.png",
           "type": "Image"
         },
         {
@@ -65,8 +65,13 @@
           "type": "Image"
         },
         {
-          "name": "fondo_02_comercial.png",
-          "path": "RegisteredResources/fondo_02_comercial.png",
+          "name": "fondo_01_resumen.png",
+          "path": "RegisteredResources/fondo_01_resumen.png",
+          "type": "Image"
+        },
+        {
+          "name": "fondo_03_operativa.png",
+          "path": "RegisteredResources/fondo_03_operativa.png",
           "type": "Image"
         },
         {
@@ -80,13 +85,8 @@
           "type": "Image"
         },
         {
-          "name": "fondo_01_resumen.png",
-          "path": "RegisteredResources/fondo_01_resumen.png",
-          "type": "Image"
-        },
-        {
-          "name": "fondo_04_proveedores.png",
-          "path": "RegisteredResources/fondo_04_proveedores.png",
+          "name": "fondo_02_comercial.png",
+          "path": "RegisteredResources/fondo_02_comercial.png",
           "type": "Image"
         }
       ]
