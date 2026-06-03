@@ -56,15 +56,15 @@ for png in set(PAGE_PNG.values()):
 print(f"  ✓  Recursos copiados ({len(set(PAGE_PNG.values()))} PNG + tema JSON)")
 
 # ── 3. report.json ────────────────────────────────────────────────────────────
-# FIX: customTheme SIN reportVersionAtImport (no-fatal warning aceptado vs crash)
-# El outspacePane.expanded ya está correcto AQUÍ en report.json, no en page.json
 report_path = os.path.join(REPORT_DEF, "report.json")
 with open(report_path) as f:
     report = json.load(f)
 
-# Tema personalizado — sin reportVersionAtImport
+# Copiar reportVersionAtImport del baseTheme para satisfacer el schema de customTheme
+base_rv = report["themeCollection"]["baseTheme"].get("reportVersionAtImport", {})
 report["themeCollection"]["customTheme"] = {
     "name": "GrupoIHSA",
+    "reportVersionAtImport": base_rv,
     "type": "RegisteredResources"
 }
 
