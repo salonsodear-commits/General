@@ -1,0 +1,68 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "baf495689c534bd3a9ad061f5cb0576e",
+  "position": {
+    "x": 20,
+    "y": 200,
+    "z": 5000,
+    "height": 300,
+    "width": 760,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Calendario"
+                    }
+                  },
+                  "Property": "MesAño"
+                }
+              },
+              "queryRef": "DIM_Calendario.MesAño",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Real Mes"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Real Mes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "PA Mes"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.PA Mes"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

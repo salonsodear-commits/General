@@ -1,0 +1,25 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-ES
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["pRutaArchivo","stgOrigen","stgRealPA","stgBaseRealCruda","DIM_Vertical","DIM_Cuenta","DIM_Ceco","DIM_Proveedor","DIM_Calendario","FACT_Presupuesto","FACT_RealDetalle","BASE_PLANA_RealvsPA","AUDIT_Diferencias"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["TMDLView_Desktop","DevMode"]
+
+ref table DIM_Calendario
+ref table DIM_Ceco
+ref table DIM_Cuenta
+ref table DIM_Proveedor
+ref table DIM_Vertical
+ref table FACT_Presupuesto
+ref table FACT_RealDetalle
+ref table AUDIT_Diferencias
+
+ref cultureInfo es-ES
+

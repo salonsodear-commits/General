@@ -1,0 +1,35 @@
+table DIM_Proveedor
+	lineageTag: a7b69507-b9ec-4f69-bff4-a0340ac82547
+
+	column Proveedor
+		dataType: string
+		lineageTag: f1e19fc2-56dc-4e1c-b2cd-c7cdca741e71
+		summarizeBy: none
+		sourceColumn: Proveedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProveedorID
+		dataType: int64
+		formatString: 0
+		lineageTag: 736862dc-d2c8-48b5-991e-08c007ca05f0
+		summarizeBy: none
+		sourceColumn: ProveedorID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_Proveedor = m
+		mode: import
+		source =
+				let
+				    Base = Table.SelectColumns(stgBaseRealCruda, {"Proveedor"}),
+				    Distinct = Table.Distinct(Base),
+				    SinNulos = Table.SelectRows(Distinct, each [Proveedor] <> null and [Proveedor] <> ""),
+				    Ordenado = Table.Sort(SinNulos, {{"Proveedor", Order.Ascending}}),
+				    ConID = Table.AddIndexColumn(Ordenado, "ProveedorID", 1, 1, Int64.Type),
+				    Tipos = Table.TransformColumnTypes(ConID, {{"ProveedorID", Int64.Type}, {"Proveedor", type text}})
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

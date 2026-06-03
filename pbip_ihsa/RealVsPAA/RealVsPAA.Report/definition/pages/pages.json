@@ -1,0 +1,14 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "d532c5ff032986009878",
+    "d8eee77324362ca32bc9",
+    "ResumenEjecutivo",
+    "33d617049008988eea19",
+    "Comercial",
+    "DetalleProveedores",
+    "Auditoria"
+  ],
+  "activePageName": "d532c5ff032986009878",
+  "landingPageName": "d532c5ff032986009878"
+}

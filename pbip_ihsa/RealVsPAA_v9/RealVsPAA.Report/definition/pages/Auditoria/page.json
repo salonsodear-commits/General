@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "Auditoria",
+  "displayName": "6. Auditoría (interno - mal, corregir)",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visibility": "HiddenInViewMode",
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "expr": {
+              "ResourcePackageItem": {
+                "PackageName": "RegisteredResources",
+                "PackageType": 1,
+                "ItemName": "fondo_06_auditoria.png"
+              }
+            }
+          },
+          "imageScaling": {
+            "expr": {
+              "Literal": {
+                "Value": "'Normal'"
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "visibility": {
+            "expr": {
+              "Literal": {
+                "Value": "1D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "background": {
+            "expr": {
+              "Literal": {
+                "Value": "'#F8FAFD'"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

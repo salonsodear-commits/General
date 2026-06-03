@@ -1,0 +1,417 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "63333194005126cb1dde",
+  "position": {
+    "x": 0,
+    "y": 160,
+    "z": 0,
+    "height": 304,
+    "width": 1104,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Cuenta"
+                    }
+                  },
+                  "Property": "Rubro"
+                }
+              },
+              "queryRef": "DIM_Cuenta.Rubro",
+              "nativeQueryRef": "Rubro",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "PA Mes"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.PA Mes",
+              "nativeQueryRef": "PA Mes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Real Mes"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Real Mes",
+              "nativeQueryRef": "Real Mes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Variación %"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Variación %",
+              "nativeQueryRef": "Variación %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "PA Acumulado"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.PA Acumulado",
+              "nativeQueryRef": "PA Acumulado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Real Acumulado"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Real Acumulado",
+              "nativeQueryRef": "Real Acumulado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Variación Acum"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Variación Acum",
+              "nativeQueryRef": "Variación Acum"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Real Año Anterior"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Real Año Anterior",
+              "nativeQueryRef": "Real Año Anterior"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Var vs Año Anterior"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Var vs Año Anterior",
+              "nativeQueryRef": "Var vs Año Anterior"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM_Cuenta"
+                  }
+                },
+                "Property": "Rubro"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "DIM_Cuenta.Rubro"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "values": [
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "FACT_Presupuesto.Variación %"
+          }
+        },
+        {
+          "properties": {
+            "icon": {
+              "kind": "Icon",
+              "layout": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'After'"
+                  }
+                }
+              },
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Middle'"
+                  }
+                }
+              },
+              "value": {
+                "expr": {
+                  "Conditional": {
+                    "Cases": [
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "FACT_Presupuesto"
+                                      }
+                                    },
+                                    "Property": "Variación %"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "-9999D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 3,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "FACT_Presupuesto"
+                                      }
+                                    },
+                                    "Property": "Variación %"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "-0.1D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleSymbolLow'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "FACT_Presupuesto"
+                                      }
+                                    },
+                                    "Property": "Variación %"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "-0.1D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 3,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "FACT_Presupuesto"
+                                      }
+                                    },
+                                    "Property": "Variación %"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "0D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleSymbolMedium'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "FACT_Presupuesto"
+                                      }
+                                    },
+                                    "Property": "Variación %"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "0D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 3,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "FACT_Presupuesto"
+                                      }
+                                    },
+                                    "Property": "Variación %"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "9999D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleSymbolHigh'"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "FACT_Presupuesto.Variación %"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "FACT_Presupuesto.PA Mes"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "FACT_Presupuesto.Variación %"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

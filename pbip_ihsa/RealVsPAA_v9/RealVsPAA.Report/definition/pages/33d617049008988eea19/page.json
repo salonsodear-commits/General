@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "33d617049008988eea19",
+  "displayName": "OPEX - 3. Resumen YTD",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "3be57bbd2a9044e501ec",
+      "target": "c32de550db671009b516",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3be57bbd2a9044e501ec",
+      "target": "ada428dec06c0c08bc61",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3be57bbd2a9044e501ec",
+      "target": "71b8101e0b400d410ba0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3be57bbd2a9044e501ec",
+      "target": "22036264746491703a06",
+      "type": "DataFilter"
+    },
+    {
+      "source": "22036264746491703a06",
+      "target": "3be57bbd2a9044e501ec",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ada428dec06c0c08bc61",
+      "target": "3be57bbd2a9044e501ec",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3be57bbd2a9044e501ec",
+      "target": "ab5dc53e21712d022237",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3be57bbd2a9044e501ec",
+      "target": "750270f120c56545dd30",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3be57bbd2a9044e501ec",
+      "target": "d3cf0cc739dac7e565be",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c32de550db671009b516",
+      "target": "ada428dec06c0c08bc61",
+      "type": "HighlightFilter"
+    },
+    {
+      "source": "c32de550db671009b516",
+      "target": "71b8101e0b400d410ba0",
+      "type": "HighlightFilter"
+    },
+    {
+      "source": "22036264746491703a06",
+      "target": "71b8101e0b400d410ba0",
+      "type": "DataFilter"
+    }
+  ],
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "expr": {
+              "ResourcePackageItem": {
+                "PackageName": "RegisteredResources",
+                "PackageType": 1,
+                "ItemName": "fondo_03_operativa.png"
+              }
+            }
+          },
+          "imageScaling": {
+            "expr": {
+              "Literal": {
+                "Value": "'Normal'"
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "visibility": {
+            "expr": {
+              "Literal": {
+                "Value": "1D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "background": {
+            "expr": {
+              "Literal": {
+                "Value": "'#F8FAFD'"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

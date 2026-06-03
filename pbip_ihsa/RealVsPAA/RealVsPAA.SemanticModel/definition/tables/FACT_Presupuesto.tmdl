@@ -1,0 +1,139 @@
+table FACT_Presupuesto
+	lineageTag: 485f1e8f-75e1-403e-87ae-0d5c55a6256c
+
+	measure 'Real Mes' = SUM(FACT_Presupuesto[MontoReal])
+		formatString: #,0
+		displayFolder: 01 Real vs PA
+		lineageTag: df00c7c8-3a82-46b5-8af7-a9bd16e55fa6
+
+	measure 'PA Mes' = SUM(FACT_Presupuesto[MontoPA])
+		formatString: #,0
+		displayFolder: 01 Real vs PA
+		lineageTag: 2dd452c4-c6d9-4547-b135-ca641ae53db0
+
+	measure Variación = [Real Mes] - [PA Mes]
+		formatString: #,0
+		displayFolder: 01 Real vs PA
+		lineageTag: 87f121f8-14a8-48b9-8185-221a0e2ee188
+
+	measure 'Variación %' = DIVIDE([Variación], [PA Mes])
+		formatString: 0.0%
+		displayFolder: 01 Real vs PA
+		lineageTag: fb75cb45-0975-410c-a246-b7bc3a7bac55
+
+	measure 'Real Acumulado' = CALCULATE([Real Mes], DATESYTD(DIM_Calendario[Fecha]))
+		formatString: #,0
+		displayFolder: 02 Acumulado
+		lineageTag: 3e3954d3-3a54-494c-ac5c-ce6633dda6d6
+
+	measure 'PA Acumulado' = CALCULATE([PA Mes], DATESYTD(DIM_Calendario[Fecha]))
+		formatString: #,0
+		displayFolder: 02 Acumulado
+		lineageTag: e48d3220-fda9-489c-b5ca-a2aeef142268
+
+	measure 'Variación Acum' = [Real Acumulado] - [PA Acumulado]
+		formatString: #,0
+		displayFolder: 02 Acumulado
+		lineageTag: 932db2c8-e69d-4db5-86d3-734a16fc2828
+
+	measure 'Real Año Anterior' = CALCULATE([Real Mes], SAMEPERIODLASTYEAR(DIM_Calendario[Fecha]))
+		formatString: #,0
+		displayFolder: 03 Interanual
+		lineageTag: 769153bc-54bc-4635-b947-2c6900e874a4
+
+	measure 'Var vs Año Anterior' = [Real Mes] - [Real Año Anterior]
+		formatString: #,0
+		displayFolder: 03 Interanual
+		lineageTag: cae1d97a-6318-4220-8559-1d08e2120945
+
+	measure 'Variación % fmt' =
+			VAR v = [Variación %]
+			RETURN IF(ISBLANK(v), "—", FORMAT(v, "+0.0%;-0.0%"))
+		displayFolder: 04 Formato
+		lineageTag: e250ff05-9f1f-4854-93a8-fca847fe7b56
+
+	measure 'Color Variación' = IF([Variación] > 0, "#C00000", "#1F7A1F")
+		displayFolder: 04 Formato
+		lineageTag: f8854171-0432-4122-a759-c42c4e21baf2
+
+	column Fecha
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f1f62b62-9d93-4eb3-b319-a82779cc680e
+		summarizeBy: none
+		sourceColumn: Fecha
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column VerticalID
+		dataType: int64
+		formatString: 0
+		lineageTag: 67eb479b-2ba2-4cb9-a056-0d410151d9e6
+		summarizeBy: none
+		sourceColumn: VerticalID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CuentaID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0affce9c-0699-4063-aa32-a279b2e406e0
+		summarizeBy: none
+		sourceColumn: CuentaID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CecoID
+		dataType: int64
+		formatString: 0
+		lineageTag: b1633bc6-b3f8-4299-bf6d-3daf51fcff87
+		summarizeBy: none
+		sourceColumn: CecoID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MontoReal
+		dataType: double
+		lineageTag: 49b424e9-4246-4f6d-b14d-cf4cd206580e
+		summarizeBy: sum
+		sourceColumn: MontoReal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MontoPA
+		dataType: double
+		lineageTag: 41189444-5ad6-4bfc-a2f4-f5835b61920b
+		summarizeBy: sum
+		sourceColumn: MontoPA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FACT_Presupuesto = m
+		mode: import
+		source =
+				let
+				    Base = stgRealPA,
+				    JoinVert = Table.NestedJoin(Base, {"Vertical"}, DIM_Vertical, {"Vertical"}, "dV", JoinKind.LeftOuter),
+				    ExpVert = Table.ExpandTableColumn(JoinVert, "dV", {"VerticalID"}),
+				    JoinCta = Table.NestedJoin(ExpVert, {"Cuenta"}, DIM_Cuenta, {"Cuenta"}, "dC", JoinKind.LeftOuter),
+				    ExpCta = Table.ExpandTableColumn(JoinCta, "dC", {"CuentaID"}),
+				    JoinCeco = Table.NestedJoin(ExpCta, {"Ceco"}, DIM_Ceco, {"Ceco"}, "dCe", JoinKind.LeftOuter),
+				    ExpCeco = Table.ExpandTableColumn(JoinCeco, "dCe", {"CecoID"}),
+				    Final = Table.SelectColumns(ExpCeco, {"Fecha", "VerticalID", "CuentaID", "CecoID", "Monto Real", "Monto PA"}),
+				    Renombrar = Table.RenameColumns(Final, {{"Monto Real", "MontoReal"}, {"Monto PA", "MontoPA"}}),
+				    Tipos = Table.TransformColumnTypes(Renombrar, {
+				        {"Fecha", type date}, {"VerticalID", Int64.Type},
+				        {"CuentaID", Int64.Type}, {"CecoID", Int64.Type},
+				        {"MontoReal", type number}, {"MontoPA", type number}
+				    })
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

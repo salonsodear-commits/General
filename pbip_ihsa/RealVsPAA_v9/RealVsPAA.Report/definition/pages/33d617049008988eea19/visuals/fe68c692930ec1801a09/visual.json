@@ -1,0 +1,68 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "fe68c692930ec1801a09",
+  "position": {
+    "x": 624,
+    "y": 224.00000000000003,
+    "z": 11000,
+    "height": 144,
+    "width": 224.00000000000003,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Calendario"
+                    }
+                  },
+                  "Property": "MesAño"
+                }
+              },
+              "queryRef": "DIM_Calendario.MesAño",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Real Acumulado"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Real Acumulado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "PA Acumulado"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.PA Acumulado"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
