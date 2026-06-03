@@ -1,0 +1,289 @@
+{
+  "name": "GrupoIHSA",
+  "dataColors": [
+    "#3267B8",
+    "#5294DA",
+    "#7CC4E8",
+    "#20488C",
+    "#D2AF50",
+    "#20B2AA",
+    "#DC4646",
+    "#A8C8EE"
+  ],
+  "background": "#F8FAFD",
+  "foreground": "#141E3C",
+  "tableAccent": "#3267B8",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "fontFamily": [
+          {
+            "value": "Segoe UI"
+          }
+        ],
+        "fontSize": [
+          {
+            "value": 10
+          }
+        ],
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "card": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            }
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#D2E1F5"
+              }
+            },
+            "radius": 8
+          }
+        ],
+        "calloutValue": [
+          {
+            "fontSize": 22,
+            "fontBold": true,
+            "color": {
+              "solid": {
+                "color": "#141E3C"
+              }
+            }
+          }
+        ],
+        "label": [
+          {
+            "fontSize": 9,
+            "color": {
+              "solid": {
+                "color": "#5070A0"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F0F4FA"
+              }
+            }
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#D2E1F5"
+              }
+            }
+          }
+        ],
+        "header": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#E8EFF9"
+              }
+            }
+          }
+        ],
+        "items": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#141E3C"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "header": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            }
+          }
+        ],
+        "rowHeaders": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#141E3C"
+              }
+            }
+          }
+        ],
+        "values": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#2A3A6A"
+              }
+            }
+          }
+        ],
+        "grid": [
+          {
+            "gridVertical": false,
+            "rowPadding": 5,
+            "outlineColor": {
+              "solid": {
+                "color": "#D2E1F5"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "matrix": {
+      "*": {
+        "header": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            }
+          }
+        ],
+        "values": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#141E3C"
+              }
+            }
+          }
+        ],
+        "subTotals": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#EEF3FB"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "lineChart": {
+      "*": {
+        "lineWidth": [
+          {
+            "value": 2
+          }
+        ],
+        "markerSize": [
+          {
+            "value": 5
+          }
+        ],
+        "dataPoint": [
+          {
+            "defaultColor": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "barChart": {
+      "*": {
+        "dataPoint": [
+          {
+            "defaultColor": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "columnChart": {
+      "*": {
+        "dataPoint": [
+          {
+            "defaultColor": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "donutChart": {
+      "*": {
+        "dataPoint": [
+          {
+            "defaultColor": {
+              "solid": {
+                "color": "#5294DA"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "good": "#20B2AA",
+  "neutral": "#3267B8",
+  "bad": "#DC4646",
+  "maximum": "#3267B8",
+  "center": "#7CC4E8",
+  "minimum": "#20488C",
+  "null": "#D2E1F5"
+}
