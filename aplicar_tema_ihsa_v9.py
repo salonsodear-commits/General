@@ -48,11 +48,9 @@ with open(report_path) as f:
 # Tomar versiones del baseTheme existente
 base_versions = report["themeCollection"]["baseTheme"]["reportVersionAtImport"]
 
-report["themeCollection"]["customTheme"] = {
-    "name": "GrupoIHSA",
-    "reportVersionAtImport": base_versions,   # FIX: propiedad requerida
-    "type": "RegisteredResources"
-}
+# customTheme sin reportVersionAtImport — esa prop es solo válida en baseTheme
+# La incluimos sin ella; el warning anterior era no-fatal; con ella crashea
+report["themeCollection"].pop("customTheme", None)  # no incluir customTheme — causa crash
 
 # resourcePackages
 packages = [p for p in report.get("resourcePackages", [])
@@ -73,7 +71,7 @@ report["resourcePackages"] = packages
 
 with open(report_path, "w", encoding="utf-8") as f:
     json.dump(report, f, indent=2, ensure_ascii=False)
-print(f"  ✓  report.json — customTheme con reportVersionAtImport")
+print(f"  ✓  report.json — RegisteredResources para imágenes y tema")
 
 # ── 4. page.json — FIX: solo image + transparency; sin outspacePane custom ───
 for page_name, png_file in PAGE_PNG.items():
