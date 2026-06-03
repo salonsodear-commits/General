@@ -80,24 +80,10 @@
               }
             }
           },
-          "imageScaling": {
-            "expr": {
-              "Literal": {
-                "Value": "'Normal'"
-              }
-            }
-          },
           "transparency": {
             "expr": {
               "Literal": {
                 "Value": "0D"
-              }
-            }
-          },
-          "visibility": {
-            "expr": {
-              "Literal": {
-                "Value": "1D"
               }
             }
           }
@@ -107,10 +93,10 @@
     "outspacePane": [
       {
         "properties": {
-          "background": {
+          "expanded": {
             "expr": {
               "Literal": {
-                "Value": "'#F8FAFD'"
+                "Value": "false"
               }
             }
           }
