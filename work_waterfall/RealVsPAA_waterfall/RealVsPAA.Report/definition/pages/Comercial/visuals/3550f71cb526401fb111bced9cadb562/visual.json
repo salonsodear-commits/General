@@ -1,0 +1,277 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "3550f71cb526401fb111bced9cadb562",
+  "position": {
+    "x": 240,
+    "y": 96,
+    "z": 3000,
+    "height": 624,
+    "width": 1040,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Vertical"
+                    }
+                  },
+                  "Property": "Vertical"
+                }
+              },
+              "queryRef": "DIM_Vertical.Vertical",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Cuenta"
+                    }
+                  },
+                  "Property": "Rubro"
+                }
+              },
+              "queryRef": "DIM_Cuenta.Rubro",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Cuenta"
+                    }
+                  },
+                  "Property": "DenominacionCuenta"
+                }
+              },
+              "queryRef": "DIM_Cuenta.DenominacionCuenta",
+              "nativeQueryRef": "DenominacionCuenta",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Ceco"
+                    }
+                  },
+                  "Property": "Ceco"
+                }
+              },
+              "queryRef": "DIM_Ceco.Ceco",
+              "nativeQueryRef": "Ceco",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Real Mes"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Real Mes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "PA Mes"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.PA Mes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Variación"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Variación"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Variación %"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Variación %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT_Presupuesto"
+                  }
+                },
+                "Property": "Variación %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "DIM_Vertical.Vertical"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Vertical"
+                    }
+                  },
+                  "Property": "Vertical"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM_Cuenta.Rubro"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Cuenta"
+                    }
+                  },
+                  "Property": "Rubro"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM_Cuenta.DenominacionCuenta"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM_Ceco.Ceco"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabular'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "FACT_Presupuesto.Real Mes"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "159.76913345983553D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM_Vertical.Vertical"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "DIM_Cuenta.Rubro"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "96.79209774710921D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT_Presupuesto.Variación %"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

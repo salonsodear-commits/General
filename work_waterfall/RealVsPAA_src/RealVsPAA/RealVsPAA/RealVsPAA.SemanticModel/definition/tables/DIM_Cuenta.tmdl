@@ -1,0 +1,75 @@
+table DIM_Cuenta
+	lineageTag: d315a799-3390-4f90-8d96-afa22af6b453
+
+	column Cuenta
+		dataType: string
+		lineageTag: bfa47d75-563f-442b-902c-15af7c9c3720
+		summarizeBy: none
+		sourceColumn: Cuenta
+
+		annotation SummarizationSetBy = Automatic
+
+	column DenominacionCuenta
+		dataType: string
+		lineageTag: c7242e9a-8702-49a5-833b-3f4e5bb11152
+		summarizeBy: none
+		sourceColumn: DenominacionCuenta
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rubro
+		dataType: string
+		lineageTag: 1ef14ce2-bd56-420b-84ea-efcc97b84c7f
+		summarizeBy: none
+		sourceColumn: Rubro
+
+		annotation SummarizationSetBy = Automatic
+
+	column CuentaID
+		dataType: int64
+		formatString: 0
+		lineageTag: abcec2a9-14e9-42b2-9990-84cd8c92c6e9
+		summarizeBy: none
+		sourceColumn: CuentaID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CAPEX_OPEX
+		dataType: string
+		lineageTag: 45e0ea94-c885-4164-be31-976670f6a42e
+		summarizeBy: none
+		sourceColumn: CAPEX_OPEX
+
+		annotation SummarizationSetBy = Automatic
+
+	column CO_GT
+		dataType: string
+		lineageTag: 6b2d9ef5-dafe-43cc-ad8c-22f4eeeb3028
+		summarizeBy: none
+		sourceColumn: CO_GT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_Cuenta = m
+		mode: import
+		source =
+				let
+				    Base = Table.SelectColumns(stgRealPA, {"Cuenta", "DenominacionCuenta", "Rubro"}),
+				    Distinct = Table.Distinct(Base),
+				    SinNulos = Table.SelectRows(Distinct, each [Cuenta] <> null and [Cuenta] <> ""),
+				    AgrupadoUnico = Table.Distinct(SinNulos, {"Cuenta"}),
+				    Ordenado = Table.Sort(AgrupadoUnico, {{"Cuenta", Order.Ascending}}),
+				    ConID = Table.AddIndexColumn(Ordenado, "CuentaID", 1, 1, Int64.Type),
+				    ConCapexOpex = Table.AddColumn(ConID, "CAPEX_OPEX", each "OPEX", type text),
+				    RubrosCO = {"BENEFICIOS AL PERSONAL", "GASTOS DE RODADOS Y EQUIPOS", "HONORARIOS, SERVICIOS CC", "MANTENIMIENTO"},
+				    ConCoGt = Table.AddColumn(ConCapexOpex, "CO_GT", each if List.Contains(RubrosCO, [Rubro]) then "CO" else "GT", type text),
+				    Tipos = Table.TransformColumnTypes(ConCoGt, {
+				        {"CuentaID", Int64.Type}, {"Cuenta", type text},
+				        {"DenominacionCuenta", type text}, {"Rubro", type text},
+				        {"CAPEX_OPEX", type text}, {"CO_GT", type text}
+				    })
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "80998bed1a5e44f880548eef65c760e8",
+  "position": {
+    "x": 372,
+    "y": 140,
+    "z": 5000,
+    "height": 400,
+    "width": 420,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "Denominación de la cuenta"
+                }
+              },
+              "queryRef": "Base Real.Denominación de la cuenta",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "OPEX Total"
+                }
+              },
+              "queryRef": "Base Real.OPEX Total"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fe33981a804eca8330e0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Base Real"
+              }
+            },
+            "Property": "Denominación de la cuenta"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "32a119be15c8ccb0db7a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Base Real"
+              }
+            },
+            "Property": "OPEX Total"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

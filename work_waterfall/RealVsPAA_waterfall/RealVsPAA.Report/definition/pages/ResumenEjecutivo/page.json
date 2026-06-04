@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ResumenEjecutivo",
+  "displayName": "OPEX - 2. Resumen YoY",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "120442f2881546039016b7290951b5db",
+      "target": "baf495689c534bd3a9ad061f5cb0576e",
+      "type": "DataFilter"
+    }
+  ]
+}

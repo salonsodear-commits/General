@@ -1,0 +1,112 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "ca4e5cc3c90e0ebc55d6",
+  "position": {
+    "x": 16,
+    "y": 560,
+    "z": 7001,
+    "height": 144,
+    "width": 800,
+    "tabOrder": 7001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "RUBRO EBITDA"
+                }
+              },
+              "queryRef": "Base Real.RUBRO EBITDA",
+              "nativeQueryRef": "RUBRO EBITDA"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "% Directo"
+                }
+              },
+              "queryRef": "Base Real.% Directo",
+              "nativeQueryRef": "% Directo"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "% Indirecto"
+                }
+              },
+              "queryRef": "Base Real.% Indirecto",
+              "nativeQueryRef": "% Indirecto"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7279631d39384e020dba",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Base Real"
+              }
+            },
+            "Property": "RUBRO EBITDA"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f7557896572bcdb6cb85",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Base Real"
+              }
+            },
+            "Property": "% Directo"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "adb85ae3e084db6a8150",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Base Real"
+              }
+            },
+            "Property": "% Indirecto"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "1c070c39758e4a70b71ae5b6a5b5dbf3",
+  "position": {
+    "x": 0,
+    "y": 288,
+    "z": 4000,
+    "height": 432,
+    "width": 1264,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Vertical"
+                    }
+                  },
+                  "Property": "Vertical"
+                }
+              },
+              "queryRef": "DIM_Vertical.Vertical"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Cuenta"
+                    }
+                  },
+                  "Property": "Cuenta"
+                }
+              },
+              "queryRef": "DIM_Cuenta.Cuenta"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Cuenta"
+                    }
+                  },
+                  "Property": "DenominacionCuenta"
+                }
+              },
+              "queryRef": "DIM_Cuenta.DenominacionCuenta",
+              "nativeQueryRef": "DenominacionCuenta"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Ceco"
+                    }
+                  },
+                  "Property": "Ceco"
+                }
+              },
+              "queryRef": "DIM_Ceco.Ceco"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_Presupuesto"
+                    }
+                  },
+                  "Property": "Real Mes"
+                }
+              },
+              "queryRef": "FACT_Presupuesto.Real Mes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_RealDetalle"
+                    }
+                  },
+                  "Property": "Real Detalle"
+                }
+              },
+              "queryRef": "FACT_RealDetalle.Real Detalle"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AUDIT_Diferencias"
+                        }
+                      },
+                      "Property": "Diferencia"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(AUDIT_Diferencias.Diferencia)",
+              "nativeQueryRef": "Diferencia"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Cuenta"
+                    }
+                  },
+                  "Property": "CAPEX_OPEX"
+                }
+              },
+              "queryRef": "DIM_Cuenta.CAPEX_OPEX",
+              "nativeQueryRef": "CAPEX_OPEX"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Cuenta"
+                    }
+                  },
+                  "Property": "CO_GT"
+                }
+              },
+              "queryRef": "DIM_Cuenta.CO_GT",
+              "nativeQueryRef": "CO_GT"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AUDIT_Diferencias"
+                    }
+                  },
+                  "Property": "Motivo"
+                }
+              },
+              "queryRef": "AUDIT_Diferencias.Motivo",
+              "nativeQueryRef": "Motivo"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "235.8571189334212D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM_Vertical.Vertical"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "DIM_Cuenta.Cuenta"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

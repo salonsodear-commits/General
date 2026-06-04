@@ -1,0 +1,48 @@
+relationship AutoDetected_112f126c-2b2f-4720-be22-dcd9232ba718
+	fromColumn: FACT_Presupuesto.CecoID
+	toColumn: DIM_Ceco.CecoID
+
+relationship AutoDetected_92c5fc5f-1a22-4d7d-9435-2f655a4a4e35
+	fromColumn: FACT_RealDetalle.CecoID
+	toColumn: DIM_Ceco.CecoID
+
+relationship AutoDetected_d7663878-fc0f-48cf-b662-fb3b298f49d6
+	fromColumn: FACT_RealDetalle.ProveedorID
+	toColumn: DIM_Proveedor.ProveedorID
+
+relationship AutoDetected_3cbaa5fe-a1c1-4a8f-a0d2-d20c5d869cbb
+	fromColumn: FACT_Presupuesto.VerticalID
+	toColumn: DIM_Vertical.VerticalID
+
+relationship AutoDetected_897c987d-9fe9-4a2e-ae61-34dd524c596c
+	fromColumn: FACT_RealDetalle.VerticalID
+	toColumn: DIM_Vertical.VerticalID
+
+relationship ea05e076-2acd-66ec-68ff-49034012f09f
+	fromColumn: FACT_Presupuesto.Fecha
+	toColumn: DIM_Calendario.Fecha
+
+relationship 8e26d5fc-51d0-dfd9-ffad-9a7af676a86b
+	fromColumn: FACT_RealDetalle.Fecha
+	toColumn: DIM_Calendario.Fecha
+
+relationship AutoDetected_b6663fb8-b933-4fe5-b505-cdda0e6fb395
+	fromColumn: AUDIT_Diferencias.Ceco
+	toColumn: DIM_Ceco.Ceco
+
+relationship AutoDetected_8ea70fda-007f-4756-b997-106ee7123d50
+	fromColumn: AUDIT_Diferencias.Cuenta
+	toColumn: DIM_Cuenta.Cuenta
+
+relationship AutoDetected_ad0764b9-43d1-4989-af94-2db34d1580f4
+	fromColumn: FACT_Presupuesto.CuentaID
+	toColumn: DIM_Cuenta.CuentaID
+
+relationship AutoDetected_ce564732-f286-47ea-9b65-8b32efe2ed94
+	fromColumn: FACT_RealDetalle.CuentaID
+	toColumn: DIM_Cuenta.CuentaID
+
+relationship AutoDetected_92930b79-368a-4e63-b4e5-c1719968c573
+	fromColumn: AUDIT_Diferencias.Vertical
+	toColumn: DIM_Vertical.Vertical
+
