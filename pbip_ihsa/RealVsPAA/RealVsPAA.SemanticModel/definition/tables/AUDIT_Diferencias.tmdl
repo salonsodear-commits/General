@@ -1,0 +1,116 @@
+table AUDIT_Diferencias
+	lineageTag: b1c2d3e4-f5a6-7890-bcde-f01234567890
+
+	column Vertical
+		dataType: string
+		lineageTag: fc5db8fd-84f3-4668-a2f5-03d0cf656280
+		summarizeBy: none
+		sourceColumn: Vertical
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cuenta
+		dataType: string
+		lineageTag: 8b75e4bf-c8ad-46f3-9737-e0b82283d025
+		summarizeBy: none
+		sourceColumn: Cuenta
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ceco
+		dataType: string
+		lineageTag: 68aef2af-ad40-4f15-8b7c-5b60ad31b485
+		summarizeBy: none
+		sourceColumn: Ceco
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7eb17823-3ca7-4d46-9115-4f9045b098c6
+		summarizeBy: none
+		sourceColumn: Fecha
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Monto_PA
+		dataType: double
+		lineageTag: 86473862-637b-43aa-bda7-3326cc262360
+		summarizeBy: sum
+		sourceColumn: Monto_PA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Monto_Base
+		dataType: double
+		lineageTag: d927c274-3050-40c4-b46c-87c8c8b89edb
+		summarizeBy: sum
+		sourceColumn: Monto_Base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Diferencia
+		dataType: double
+		lineageTag: 6e0a6424-5d52-47fd-8488-ab8315d8ea98
+		summarizeBy: sum
+		sourceColumn: Diferencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Motivo
+		dataType: string
+		lineageTag: a3ec5602-688f-4c3a-a6bc-e400f3523cad
+		summarizeBy: none
+		sourceColumn: Motivo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AUDIT_Diferencias = m
+		mode: import
+		source =
+				let
+				    PA_Agg = Table.Group(
+				        Table.SelectColumns(stgRealPA, {"Vertical", "Cuenta", "Ceco", "Fecha", "Monto Real"}),
+				        {"Vertical", "Cuenta", "Ceco", "Fecha"},
+				        {{"Monto_PA", each List.Sum([Monto Real]), type number}}
+				    ),
+				    Base_Agg = Table.Group(
+				        Table.SelectColumns(stgBaseRealCruda, {"Vertical", "Cuenta", "Ceco", "Fecha", "MontoReal"}),
+				        {"Vertical", "Cuenta", "Ceco", "Fecha"},
+				        {{"Monto_Base", each List.Sum([MontoReal]), type number}}
+				    ),
+				    Join = Table.NestedJoin(
+				        PA_Agg, {"Vertical", "Cuenta", "Ceco", "Fecha"},
+				        Base_Agg, {"Vertical", "Cuenta", "Ceco", "Fecha"},
+				        "Base", JoinKind.FullOuter
+				    ),
+				    Expand = Table.ExpandTableColumn(Join, "Base", {"Monto_Base"}),
+				    PA_Fixed = Table.ReplaceValue(Expand, null, 0, Replacer.ReplaceValue, {"Monto_PA"}),
+				    Base_Fixed = Table.ReplaceValue(PA_Fixed, null, 0, Replacer.ReplaceValue, {"Monto_Base"}),
+				    ConDif = Table.AddColumn(Base_Fixed, "Diferencia", each [Monto_PA] - [Monto_Base], type number),
+				    ConMotivo = Table.AddColumn(ConDif, "Motivo", each
+				        if [Monto_PA] = 0 and [Monto_Base] <> 0 then "Solo en Base Real (no está en REAL vs PA)"
+				        else if [Monto_Base] = 0 and [Monto_PA] <> 0 then "Solo en REAL vs PA (no está en Base Real)"
+				        else "Diferencia de importe en ambas fuentes"
+				    ),
+				    SoloDif = Table.SelectRows(ConMotivo, each Number.Abs([Diferencia]) > 0.01),
+				    Tipos = Table.TransformColumnTypes(SoloDif, {
+				        {"Fecha", type date}, {"Monto_PA", type number},
+				        {"Monto_Base", type number}, {"Diferencia", type number},
+				        {"Vertical", type text}, {"Cuenta", type text},
+				        {"Ceco", type text}, {"Motivo", type text}
+				    })
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

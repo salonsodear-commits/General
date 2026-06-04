@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "RealVsPAA"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "444f1e08-5a21-40df-9876-2fbb0173ed35"
+  }
+}

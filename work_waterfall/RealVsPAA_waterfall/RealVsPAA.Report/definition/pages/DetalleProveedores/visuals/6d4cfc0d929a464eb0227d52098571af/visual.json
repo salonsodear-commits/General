@@ -1,0 +1,70 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "6d4cfc0d929a464eb0227d52098571af",
+  "position": {
+    "x": 16,
+    "y": 64,
+    "z": 1000,
+    "height": 128,
+    "width": 272,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_RealDetalle"
+                    }
+                  },
+                  "Property": "Real Detalle"
+                }
+              },
+              "queryRef": "FACT_RealDetalle.Real Detalle"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "188c640124cd0492a1b8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FACT_RealDetalle"
+              }
+            },
+            "Property": "Real Detalle"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

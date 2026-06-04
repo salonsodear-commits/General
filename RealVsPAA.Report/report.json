@@ -1,0 +1,367 @@
+{
+  "id": 0,
+  "resourcePackages": [],
+  "config": "{\"version\": \"5.43\", \"themeCollection\": {\"baseTheme\": {\"name\": \"CY24SU10\", \"version\": \"5.43\", \"type\": 2}}, \"activeSectionIndex\": 0, \"defaultDrillFilterOtherVisuals\": true, \"settings\": {\"useStylableVisualContainerHeader\": true}}",
+  "layoutOptimization": 0,
+  "sections": [
+    {
+      "name": "ResumenEjecutivo",
+      "displayName": "1. Resumen Ejecutivo",
+      "filters": "[]",
+      "ordinal": 0,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 0,
+          "width": 800,
+          "height": 50,
+          "config": "{\"name\": \"140c2837cd094801b6e121277a6550c0\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 0, \"width\": 800, \"height\": 50}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Resumen Ejecutivo \\u2014 Real vs Presupuesto (PAA)\", \"textStyle\": {\"fontSize\": \"18pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 20,
+          "y": 70,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"3eb70c0687654cee8968e19aca29a224\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 70, \"z\": 0, \"width\": 290, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"FACT_Presupuesto.Real Mes\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Real Mes\"}, \"Name\": \"FACT_Presupuesto.Real Mes\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 320,
+          "y": 70,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"b63947c3600848999c0588dcd874cbb0\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 320, \"y\": 70, \"z\": 0, \"width\": 290, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"FACT_Presupuesto.PA Mes\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"PA Mes\"}, \"Name\": \"FACT_Presupuesto.PA Mes\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 620,
+          "y": 70,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"91f3e55407c742c09606ba75e133b39a\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 620, \"y\": 70, \"z\": 0, \"width\": 290, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"FACT_Presupuesto.Variaci\\u00f3n\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Variaci\\u00f3n\"}, \"Name\": \"FACT_Presupuesto.Variaci\\u00f3n\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 920,
+          "y": 70,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"1e82603f497e431a8bdc447069a0d1a3\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 920, \"y\": 70, \"z\": 0, \"width\": 290, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"FACT_Presupuesto.Variaci\\u00f3n %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Variaci\\u00f3n %\"}, \"Name\": \"FACT_Presupuesto.Variaci\\u00f3n %\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 20,
+          "y": 200,
+          "z": 0,
+          "width": 760,
+          "height": 300,
+          "config": "{\"name\": \"baf495689c534bd3a9ad061f5cb0576e\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 200, \"z\": 0, \"width\": 760, \"height\": 300, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"DIM_Calendario.MesA\\u00f1o\"}], \"Y\": [{\"queryRef\": \"FACT_Presupuesto.Real Mes\"}, {\"queryRef\": \"FACT_Presupuesto.PA Mes\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"c\", \"Entity\": \"DIM_Calendario\", \"Type\": 0}, {\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"c\"}}, \"Property\": \"MesA\\u00f1o\"}, \"Name\": \"DIM_Calendario.MesA\\u00f1o\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Real Mes\"}, \"Name\": \"FACT_Presupuesto.Real Mes\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"PA Mes\"}, \"Name\": \"FACT_Presupuesto.PA Mes\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 20,
+          "y": 510,
+          "z": 0,
+          "width": 760,
+          "height": 190,
+          "config": "{\"name\": \"4683121aac83432fb276f4c3a78b9363\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 510, \"z\": 0, \"width\": 760, \"height\": 190, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"DIM_Vertical.Vertical\"}], \"Y\": [{\"queryRef\": \"FACT_Presupuesto.Real Mes\"}, {\"queryRef\": \"FACT_Presupuesto.PA Mes\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"v\", \"Entity\": \"DIM_Vertical\", \"Type\": 0}, {\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"v\"}}, \"Property\": \"Vertical\"}, \"Name\": \"DIM_Vertical.Vertical\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Real Mes\"}, \"Name\": \"FACT_Presupuesto.Real Mes\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"PA Mes\"}, \"Name\": \"FACT_Presupuesto.PA Mes\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 800,
+          "y": 200,
+          "z": 0,
+          "width": 200,
+          "height": 160,
+          "config": "{\"name\": \"724fe8db4abc4264958f037dee8bb0da\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 800, \"y\": 200, \"z\": 0, \"width\": 200, \"height\": 160, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"DIM_Vertical.Vertical\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"v\", \"Entity\": \"DIM_Vertical\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"v\"}}, \"Property\": \"Vertical\"}, \"Name\": \"DIM_Vertical.Vertical\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 1010,
+          "y": 200,
+          "z": 0,
+          "width": 200,
+          "height": 160,
+          "config": "{\"name\": \"15b2c760c02942c5ab0877d1acda05fe\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1010, \"y\": 200, \"z\": 0, \"width\": 200, \"height\": 160, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"DIM_Cuenta.Rubro\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"a\", \"Entity\": \"DIM_Cuenta\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"a\"}}, \"Property\": \"Rubro\"}, \"Name\": \"DIM_Cuenta.Rubro\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 800,
+          "y": 370,
+          "z": 0,
+          "width": 410,
+          "height": 130,
+          "config": "{\"name\": \"120442f2881546039016b7290951b5db\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 800, \"y\": 370, \"z\": 0, \"width\": 410, \"height\": 130, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"DIM_Calendario.MesA\\u00f1o\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"c\", \"Entity\": \"DIM_Calendario\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"c\"}}, \"Property\": \"MesA\\u00f1o\"}, \"Name\": \"DIM_Calendario.MesA\\u00f1o\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 800,
+          "y": 510,
+          "z": 0,
+          "width": 410,
+          "height": 190,
+          "config": "{\"name\": \"d53414f9c1ed4541a54fa5fd38581a9e\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 800, \"y\": 510, \"z\": 0, \"width\": 410, \"height\": 190, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Category\": [{\"queryRef\": \"DIM_Calendario.MesA\\u00f1o\"}], \"Y\": [{\"queryRef\": \"FACT_Presupuesto.Real Acumulado\"}, {\"queryRef\": \"FACT_Presupuesto.PA Acumulado\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"c\", \"Entity\": \"DIM_Calendario\", \"Type\": 0}, {\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"c\"}}, \"Property\": \"MesA\\u00f1o\"}, \"Name\": \"DIM_Calendario.MesA\\u00f1o\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Real Acumulado\"}, \"Name\": \"FACT_Presupuesto.Real Acumulado\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"PA Acumulado\"}, \"Name\": \"FACT_Presupuesto.PA Acumulado\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        }
+      ],
+      "config": "{}",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "name": "Comercial",
+      "displayName": "2. Comercial",
+      "filters": "[]",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 0,
+          "width": 800,
+          "height": 50,
+          "config": "{\"name\": \"8db8ad1a66984d62a233b98e50de2bed\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 0, \"width\": 800, \"height\": 50}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Comercial \\u2014 Verticales, Rubros y Cuentas\", \"textStyle\": {\"fontSize\": \"18pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 1020,
+          "y": 70,
+          "z": 0,
+          "width": 240,
+          "height": 120,
+          "config": "{\"name\": \"3c22559022c34a1a9f61cde4f30c156d\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 70, \"z\": 0, \"width\": 240, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"DIM_Vertical.Vertical\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"v\", \"Entity\": \"DIM_Vertical\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"v\"}}, \"Property\": \"Vertical\"}, \"Name\": \"DIM_Vertical.Vertical\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 1020,
+          "y": 200,
+          "z": 0,
+          "width": 240,
+          "height": 120,
+          "config": "{\"name\": \"2c8bcecc859c49c7bfbf5ead2bfb6662\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 200, \"z\": 0, \"width\": 240, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"DIM_Calendario.MesA\\u00f1o\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"c\", \"Entity\": \"DIM_Calendario\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"c\"}}, \"Property\": \"MesA\\u00f1o\"}, \"Name\": \"DIM_Calendario.MesA\\u00f1o\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 20,
+          "y": 70,
+          "z": 0,
+          "width": 980,
+          "height": 620,
+          "config": "{\"name\": \"3550f71cb526401fb111bced9cadb562\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 70, \"z\": 0, \"width\": 980, \"height\": 620, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"matrix\", \"projections\": {\"Rows\": [{\"queryRef\": \"DIM_Vertical.Vertical\"}, {\"queryRef\": \"DIM_Cuenta.Rubro\"}, {\"queryRef\": \"DIM_Cuenta.Cuenta\"}], \"Values\": [{\"queryRef\": \"FACT_Presupuesto.Real Mes\"}, {\"queryRef\": \"FACT_Presupuesto.PA Mes\"}, {\"queryRef\": \"FACT_Presupuesto.Variaci\\u00f3n\"}, {\"queryRef\": \"FACT_Presupuesto.Variaci\\u00f3n %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"v\", \"Entity\": \"DIM_Vertical\", \"Type\": 0}, {\"Name\": \"a\", \"Entity\": \"DIM_Cuenta\", \"Type\": 0}, {\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"v\"}}, \"Property\": \"Vertical\"}, \"Name\": \"DIM_Vertical.Vertical\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"a\"}}, \"Property\": \"Rubro\"}, \"Name\": \"DIM_Cuenta.Rubro\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"a\"}}, \"Property\": \"Cuenta\"}, \"Name\": \"DIM_Cuenta.Cuenta\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Real Mes\"}, \"Name\": \"FACT_Presupuesto.Real Mes\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"PA Mes\"}, \"Name\": \"FACT_Presupuesto.PA Mes\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Variaci\\u00f3n\"}, \"Name\": \"FACT_Presupuesto.Variaci\\u00f3n\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Variaci\\u00f3n %\"}, \"Name\": \"FACT_Presupuesto.Variaci\\u00f3n %\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        }
+      ],
+      "config": "{}",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "name": "Operativa",
+      "displayName": "3. Operativa",
+      "filters": "[]",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 0,
+          "width": 900,
+          "height": 50,
+          "config": "{\"name\": \"c5e255c6eb954ff0ab42f91a2abae9c7\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 0, \"width\": 900, \"height\": 50}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Operativa \\u2014 Apertura Vertical > Rubro > Cuenta > Ceco\", \"textStyle\": {\"fontSize\": \"18pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 1020,
+          "y": 70,
+          "z": 0,
+          "width": 240,
+          "height": 120,
+          "config": "{\"name\": \"e3e581d1ba5e4a51840c0821acbe39e3\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 70, \"z\": 0, \"width\": 240, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"DIM_Cuenta.Rubro\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"a\", \"Entity\": \"DIM_Cuenta\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"a\"}}, \"Property\": \"Rubro\"}, \"Name\": \"DIM_Cuenta.Rubro\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 1020,
+          "y": 200,
+          "z": 0,
+          "width": 240,
+          "height": 120,
+          "config": "{\"name\": \"b5f512a6da7f46d0ad8f7744d13eb476\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 200, \"z\": 0, \"width\": 240, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"DIM_Calendario.MesA\\u00f1o\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"c\", \"Entity\": \"DIM_Calendario\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"c\"}}, \"Property\": \"MesA\\u00f1o\"}, \"Name\": \"DIM_Calendario.MesA\\u00f1o\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 20,
+          "y": 70,
+          "z": 0,
+          "width": 980,
+          "height": 620,
+          "config": "{\"name\": \"bc035aa162ef4cd892dc56e203d46889\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 70, \"z\": 0, \"width\": 980, \"height\": 620, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"matrix\", \"projections\": {\"Rows\": [{\"queryRef\": \"DIM_Vertical.Vertical\"}, {\"queryRef\": \"DIM_Cuenta.Rubro\"}, {\"queryRef\": \"DIM_Cuenta.Cuenta\"}, {\"queryRef\": \"DIM_Ceco.Ceco\"}], \"Values\": [{\"queryRef\": \"FACT_Presupuesto.Real Mes\"}, {\"queryRef\": \"FACT_Presupuesto.PA Mes\"}, {\"queryRef\": \"FACT_Presupuesto.Variaci\\u00f3n\"}, {\"queryRef\": \"FACT_Presupuesto.Variaci\\u00f3n %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"v\", \"Entity\": \"DIM_Vertical\", \"Type\": 0}, {\"Name\": \"a\", \"Entity\": \"DIM_Cuenta\", \"Type\": 0}, {\"Name\": \"e\", \"Entity\": \"DIM_Ceco\", \"Type\": 0}, {\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"v\"}}, \"Property\": \"Vertical\"}, \"Name\": \"DIM_Vertical.Vertical\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"a\"}}, \"Property\": \"Rubro\"}, \"Name\": \"DIM_Cuenta.Rubro\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"a\"}}, \"Property\": \"Cuenta\"}, \"Name\": \"DIM_Cuenta.Cuenta\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"e\"}}, \"Property\": \"Ceco\"}, \"Name\": \"DIM_Ceco.Ceco\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Real Mes\"}, \"Name\": \"FACT_Presupuesto.Real Mes\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"PA Mes\"}, \"Name\": \"FACT_Presupuesto.PA Mes\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Variaci\\u00f3n\"}, \"Name\": \"FACT_Presupuesto.Variaci\\u00f3n\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Variaci\\u00f3n %\"}, \"Name\": \"FACT_Presupuesto.Variaci\\u00f3n %\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        }
+      ],
+      "config": "{}",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "name": "DetalleProveedores",
+      "displayName": "4. Drill Through — Proveedores",
+      "filters": "[{\"name\": \"7580ccc2c6e245688d96d15ab7ef68bf\", \"expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Entity\": \"DIM_Cuenta\"}}, \"Property\": \"Cuenta\"}}, \"type\": \"Drillthrough\", \"howCreated\": 1, \"filter\": {\"Version\": 2, \"From\": [{\"Name\": \"a\", \"Entity\": \"DIM_Cuenta\", \"Type\": 0}], \"Where\": []}}, {\"name\": \"adf142b0cb2741e4bdc81a29beac4e79\", \"expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Entity\": \"DIM_Ceco\"}}, \"Property\": \"Ceco\"}}, \"type\": \"Drillthrough\", \"howCreated\": 1, \"filter\": {\"Version\": 2, \"From\": [{\"Name\": \"e\", \"Entity\": \"DIM_Ceco\", \"Type\": 0}], \"Where\": []}}]",
+      "ordinal": 3,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 0,
+          "width": 900,
+          "height": 50,
+          "config": "{\"name\": \"c59bb2eb49b449448b2ea3efe58958a4\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 0, \"width\": 900, \"height\": 50}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Detalle de Proveedores (solo Real) \\u2014 Drill Through por Cuenta + Ceco\", \"textStyle\": {\"fontSize\": \"18pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 20,
+          "y": 70,
+          "z": 0,
+          "width": 300,
+          "height": 120,
+          "config": "{\"name\": \"6d4cfc0d929a464eb0227d52098571af\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 70, \"z\": 0, \"width\": 300, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"FACT_RealDetalle.Real Detalle\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"r\", \"Entity\": \"FACT_RealDetalle\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"r\"}}, \"Property\": \"Real Detalle\"}, \"Name\": \"FACT_RealDetalle.Real Detalle\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 20,
+          "y": 200,
+          "z": 0,
+          "width": 1240,
+          "height": 500,
+          "config": "{\"name\": \"9d3ef86ac0be4d27a67b66dbc7b93110\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 200, \"z\": 0, \"width\": 1240, \"height\": 500, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"DIM_Proveedor.Proveedor\"}, {\"queryRef\": \"DIM_Cuenta.Cuenta\"}, {\"queryRef\": \"DIM_Ceco.Ceco\"}, {\"queryRef\": \"FACT_RealDetalle.Real Detalle\"}, {\"queryRef\": \"FACT_RealDetalle.Texto\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"p\", \"Entity\": \"DIM_Proveedor\", \"Type\": 0}, {\"Name\": \"a\", \"Entity\": \"DIM_Cuenta\", \"Type\": 0}, {\"Name\": \"e\", \"Entity\": \"DIM_Ceco\", \"Type\": 0}, {\"Name\": \"r\", \"Entity\": \"FACT_RealDetalle\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"p\"}}, \"Property\": \"Proveedor\"}, \"Name\": \"DIM_Proveedor.Proveedor\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"a\"}}, \"Property\": \"Cuenta\"}, \"Name\": \"DIM_Cuenta.Cuenta\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"e\"}}, \"Property\": \"Ceco\"}, \"Name\": \"DIM_Ceco.Ceco\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"r\"}}, \"Property\": \"Real Detalle\"}, \"Name\": \"FACT_RealDetalle.Real Detalle\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"r\"}}, \"Property\": \"Texto\"}, \"Name\": \"FACT_RealDetalle.Texto\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        }
+      ],
+      "config": "{}",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "name": "Auditoria",
+      "displayName": "5. Auditoría",
+      "filters": "[]",
+      "ordinal": 4,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 0,
+          "width": 900,
+          "height": 50,
+          "config": "{\"name\": \"fbd27b752ec144ed8857ccb048ca1435\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 0, \"width\": 900, \"height\": 50}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Auditor\\u00eda \\u2014 Controles y validaciones\", \"textStyle\": {\"fontSize\": \"18pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 20,
+          "y": 70,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"4656f9f4f0df4e95951a7640d1d1254d\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 70, \"z\": 0, \"width\": 290, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"FACT_Presupuesto.Real Mes\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Real Mes\"}, \"Name\": \"FACT_Presupuesto.Real Mes\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 320,
+          "y": 70,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"41f66892e3984004a02277df15aab212\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 320, \"y\": 70, \"z\": 0, \"width\": 290, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"FACT_RealDetalle.Real Detalle\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"r\", \"Entity\": \"FACT_RealDetalle\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"r\"}}, \"Property\": \"Real Detalle\"}, \"Name\": \"FACT_RealDetalle.Real Detalle\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 620,
+          "y": 70,
+          "z": 0,
+          "width": 290,
+          "height": 120,
+          "config": "{\"name\": \"170dffde66a2423792338b48d682539d\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 620, \"y\": 70, \"z\": 0, \"width\": 290, \"height\": 120, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"FACT_Presupuesto.Variaci\\u00f3n\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Variaci\\u00f3n\"}, \"Name\": \"FACT_Presupuesto.Variaci\\u00f3n\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        },
+        {
+          "x": 20,
+          "y": 200,
+          "z": 0,
+          "width": 1240,
+          "height": 500,
+          "config": "{\"name\": \"1c070c39758e4a70b71ae5b6a5b5dbf3\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 200, \"z\": 0, \"width\": 1240, \"height\": 500, \"tabOrder\": 0}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"DIM_Vertical.Vertical\"}, {\"queryRef\": \"DIM_Cuenta.Cuenta\"}, {\"queryRef\": \"DIM_Ceco.Ceco\"}, {\"queryRef\": \"FACT_Presupuesto.Real Mes\"}, {\"queryRef\": \"FACT_RealDetalle.Real Detalle\"}, {\"queryRef\": \"FACT_Presupuesto.Variaci\\u00f3n\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"v\", \"Entity\": \"DIM_Vertical\", \"Type\": 0}, {\"Name\": \"a\", \"Entity\": \"DIM_Cuenta\", \"Type\": 0}, {\"Name\": \"e\", \"Entity\": \"DIM_Ceco\", \"Type\": 0}, {\"Name\": \"f\", \"Entity\": \"FACT_Presupuesto\", \"Type\": 0}, {\"Name\": \"r\", \"Entity\": \"FACT_RealDetalle\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"v\"}}, \"Property\": \"Vertical\"}, \"Name\": \"DIM_Vertical.Vertical\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"a\"}}, \"Property\": \"Cuenta\"}, \"Name\": \"DIM_Cuenta.Cuenta\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"e\"}}, \"Property\": \"Ceco\"}, \"Name\": \"DIM_Ceco.Ceco\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Real Mes\"}, \"Name\": \"FACT_Presupuesto.Real Mes\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"r\"}}, \"Property\": \"Real Detalle\"}, \"Name\": \"FACT_RealDetalle.Real Detalle\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Variaci\\u00f3n\"}, \"Name\": \"FACT_Presupuesto.Variaci\\u00f3n\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]",
+          "query": "",
+          "dataTransforms": ""
+        }
+      ],
+      "config": "{}",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "pods": [],
+  "publicCustomVisuals": []
+}

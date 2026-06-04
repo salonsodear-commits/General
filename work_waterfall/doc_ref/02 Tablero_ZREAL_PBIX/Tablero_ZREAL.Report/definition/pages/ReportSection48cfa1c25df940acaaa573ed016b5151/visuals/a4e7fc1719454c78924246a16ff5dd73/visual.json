@@ -1,0 +1,113 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "a4e7fc1719454c78924246a16ff5dd73",
+  "position": {
+    "x": 808,
+    "y": 140,
+    "z": 7000,
+    "height": 400,
+    "width": 456,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "ZonaCECO"
+                }
+              },
+              "queryRef": "Base Real.ZonaCECO"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "ZonaHuerfana"
+                }
+              },
+              "queryRef": "Base Real.ZonaHuerfana"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "OPEX Total"
+                }
+              },
+              "queryRef": "Base Real.OPEX Total"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ed2ff4c59e3329830b88",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Base Real"
+              }
+            },
+            "Property": "OPEX Total"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b4110e0609789d23b276",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Base Real"
+              }
+            },
+            "Property": "ZonaCECO"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "35181cbc8d136ed7e66e",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Base Real"
+              }
+            },
+            "Property": "ZonaHuerfana"
+          }
+        },
+        "type": "Categorical"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

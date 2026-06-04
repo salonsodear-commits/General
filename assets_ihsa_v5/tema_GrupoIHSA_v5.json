@@ -1,0 +1,248 @@
+{
+  "name": "GrupoIHSA_v5",
+  "dataColors": [
+    "#3267B8",
+    "#5294DA",
+    "#173773",
+    "#C8A028",
+    "#19996E",
+    "#C82D32",
+    "#7AADDF",
+    "#A8C8EE"
+  ],
+  "background": "#F6F9FE",
+  "foreground": "#3267B8",
+  "tableAccent": "#3267B8",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "fontFamily": [
+          {
+            "value": "Segoe UI"
+          }
+        ],
+        "fontSize": [
+          {
+            "value": 10
+          }
+        ]
+      }
+    },
+    "card": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            }
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            },
+            "radius": 12
+          }
+        ],
+        "calloutValue": [
+          {
+            "fontSize": 22,
+            "fontBold": true,
+            "color": {
+              "solid": {
+                "color": "#12204A"
+              }
+            }
+          }
+        ],
+        "label": [
+          {
+            "fontSize": 9,
+            "color": {
+              "solid": {
+                "color": "#5A73A0"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#121840"
+              }
+            }
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "header": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#173773"
+              }
+            }
+          }
+        ],
+        "items": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#C8D8F0"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "header": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            }
+          }
+        ],
+        "values": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#12204A"
+              }
+            }
+          }
+        ],
+        "grid": [
+          {
+            "gridVertical": false,
+            "rowPadding": 5
+          }
+        ],
+        "rowHeaders": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#12204A"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "matrix": {
+      "*": {
+        "header": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            }
+          }
+        ],
+        "values": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#12204A"
+              }
+            }
+          }
+        ],
+        "subTotals": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#EBF1FC"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "lineChart": {
+      "*": {
+        "lineWidth": [
+          {
+            "value": 2
+          }
+        ],
+        "markerSize": [
+          {
+            "value": 5
+          }
+        ]
+      }
+    },
+    "barChart": {
+      "*": {
+        "dataPoint": [
+          {
+            "defaultColor": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "columnChart": {
+      "*": {
+        "dataPoint": [
+          {
+            "defaultColor": {
+              "solid": {
+                "color": "#3267B8"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "good": "#19996E",
+  "neutral": "#5294DA",
+  "bad": "#C82D32",
+  "maximum": "#3267B8",
+  "center": "#7CC4E8",
+  "minimum": "#173773",
+  "null": "#D0DAF0"
+}

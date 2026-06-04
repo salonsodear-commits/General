@@ -1,0 +1,119 @@
+expression pRutaArchivo = "O:\Nuevos Negocios\Juliana\10 TRBJ\12 Ops Comp\09 Proyecto Datos\02 PowerBI\RealVsPAA\Datos\Real y pa 2026v2.xlsx" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 1d6533b8-7057-4ef6-aabb-c6f0f5686b1e
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navegación
+
+expression stgOrigen =
+		let
+		    Origen = Excel.Workbook(File.Contents(pRutaArchivo), null, true)
+		in
+		    Origen
+	lineageTag: 25516e2c-915b-42c1-b9f8-c969e329bd25
+
+	annotation PBI_ResultType = Table
+
+expression stgRealPA =
+		let
+		    Origen = stgOrigen,
+		    Hoja = Origen{[Item="REAL vs PA 2025 2026", Kind="Sheet"]}[Data],
+		    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
+		    Seleccion = Table.SelectColumns(Encabezados, {
+		        "Vertical", "Cuenta", "Denominación Cuenta", "Ceco",
+		        "Denominación Rubro", "mes año", "Monto Real", "Monto PA"
+		    }),
+		    Renombrar = Table.RenameColumns(Seleccion, {
+		        {"Denominación Cuenta", "DenominacionCuenta"},
+		        {"Denominación Rubro", "Rubro"},
+		        {"mes año", "Fecha"}
+		    }),
+		    SinVacias = Table.SelectRows(Renombrar, each [Vertical] <> null and [Vertical] <> ""),
+		    Normalizar = Table.TransformColumns(SinVacias, {
+		        {"Vertical", each Text.Upper(Text.Trim(_)), type text},
+		        {"Cuenta", each Text.Trim(Text.From(_)), type text},
+		        {"Ceco", each Text.Upper(Text.Trim(Text.From(_))), type text},
+		        {"DenominacionCuenta", each Text.Trim(_), type text},
+		        {"Rubro", each Text.Upper(Text.Trim(_)), type text}
+		    }),
+		    MontosReal = Table.ReplaceValue(Normalizar, null, 0, Replacer.ReplaceValue, {"Monto Real"}),
+		    MontosPA = Table.ReplaceValue(MontosReal, null, 0, Replacer.ReplaceValue, {"Monto PA"}),
+		    Tipos = Table.TransformColumnTypes(MontosPA, {
+		        {"Fecha", type date},
+		        {"Monto Real", type number},
+		        {"Monto PA", type number}
+		    })
+		in
+		    Tipos
+	lineageTag: 83bdb191-c556-4d40-aa22-0a1c3674ea92
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+expression stgBaseRealCruda =
+		let
+		    Origen = stgOrigen,
+		    Hoja = Origen{[Item="Base Real", Kind="Sheet"]}[Data],
+		    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars=true]),
+		    Seleccion = Table.SelectColumns(Encabezados, {
+		        "VERTICAL", "Clase de coste", "Centro de coste",
+		        "Denominacion cuenta contrapartida", "Valor/mon.inf.",
+		        "mes año", "cuenta ceco", "Texto"
+		    }),
+		    Renombrar = Table.RenameColumns(Seleccion, {
+		        {"VERTICAL", "Vertical"},
+		        {"Clase de coste", "Cuenta"},
+		        {"Centro de coste", "Ceco"},
+		        {"Denominacion cuenta contrapartida", "Proveedor"},
+		        {"Valor/mon.inf.", "MontoReal"},
+		        {"mes año", "Fecha"}
+		    }),
+		    Normalizar = Table.TransformColumns(Renombrar, {
+		        {"Vertical", each Text.Upper(Text.Trim(_)), type text},
+		        {"Cuenta", each Text.Trim(Text.From(_)), type text},
+		        {"Ceco", each Text.Upper(Text.Trim(Text.From(_))), type text},
+		        {"Proveedor", each Text.Upper(Text.Trim(_)), type text}
+		    }),
+		    SinNulos = Table.ReplaceValue(Normalizar, null, 0, Replacer.ReplaceValue, {"MontoReal"}),
+		    Tipos = Table.TransformColumnTypes(SinNulos, {
+		        {"Fecha", type date},
+		        {"MontoReal", type number}
+		    }),
+		    FiltroFecha = Table.SelectRows(Tipos, each [Fecha] >= #date(2025,1,1))
+		in
+		    FiltroFecha
+	lineageTag: e6a87ea5-0287-410f-aa00-a0c712ea306e
+
+	annotation PBI_ResultType = Table
+
+expression BASE_PLANA_RealvsPA =
+		let
+		    Origen = stgOrigen,
+		    Hoja = Origen{[Item="REAL vs PA 2025 2026", Kind="Sheet"]}[Data],
+		    QuitarFilasSup = Table.Skip(Hoja, 2),
+		    Encabezados = Table.PromoteHeaders(QuitarFilasSup, [PromoteAllScalars=true]),
+		    Seleccion = Table.SelectColumns(Encabezados, {
+		        "Vertical", "Cuenta", "Denominación Cuenta", "Ceco",
+		        "Denominación Rubro", "mes año", "Monto Real", "Monto PA"
+		    }),
+		    Renombrar = Table.RenameColumns(Seleccion, {
+		        {"Denominación Cuenta", "DenominacionCuenta"},
+		        {"Denominación Rubro", "Rubro"},
+		        {"mes año", "Fecha"}
+		    }),
+		    SinVacias = Table.SelectRows(Renombrar, each [Vertical] <> null and [Vertical] <> ""),
+		    MontosReal = Table.ReplaceValue(SinVacias, null, 0, Replacer.ReplaceValue, {"Monto Real"}),
+		    MontosPA = Table.ReplaceValue(MontosReal, null, 0, Replacer.ReplaceValue, {"Monto PA"}),
+		    Renombrar2 = Table.RenameColumns(MontosPA, {{"Monto Real", "MontoReal"}, {"Monto PA", "MontoPA"}}),
+		    ConVariacion = Table.AddColumn(Renombrar2, "Variacion", each [MontoReal] - [MontoPA], type number),
+		    Tipos = Table.TransformColumnTypes(ConVariacion, {
+		        {"Fecha", type date}, {"MontoReal", type number},
+		        {"MontoPA", type number}, {"Variacion", type number}
+		    })
+		in
+		    Tipos
+	lineageTag: ebdc7b6c-8164-4348-9aa8-f50bacef6d0c
+
+	annotation PBI_ResultType = Table
+

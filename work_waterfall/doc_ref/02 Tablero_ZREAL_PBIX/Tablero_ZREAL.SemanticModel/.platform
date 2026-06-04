@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Tablero_ZREAL"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "438f36f6-95b6-4aea-a955-54537ffce28b"
+  }
+}

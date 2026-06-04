@@ -1,0 +1,49 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "DetalleProveedores",
+  "displayName": "4. Drill de Proveedores (Real)",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7580ccc2c6e245688d96d15ab7ef68bf",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_Cuenta"
+              }
+            },
+            "Property": "Cuenta"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "adf142b0cb2741e4bdc81a29beac4e79",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_Ceco"
+              }
+            },
+            "Property": "Ceco"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "1a19765fcc84c6401453",
+      "target": "9d3ef86ac0be4d27a67b66dbc7b93110",
+      "type": "DataFilter"
+    }
+  ]
+}

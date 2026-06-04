@@ -1,0 +1,14 @@
+model Model
+	culture: es-AR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-AR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["RutaArchivo","Base Real"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Base Real'
+

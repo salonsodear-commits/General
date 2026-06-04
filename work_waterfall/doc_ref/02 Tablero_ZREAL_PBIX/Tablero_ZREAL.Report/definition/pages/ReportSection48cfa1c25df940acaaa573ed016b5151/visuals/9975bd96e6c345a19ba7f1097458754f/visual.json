@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "9975bd96e6c345a19ba7f1097458754f",
+  "position": {
+    "x": 16,
+    "y": 16,
+    "z": 0,
+    "height": 110,
+    "width": 260,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "OPEX Total"
+                }
+              },
+              "queryRef": "Base Real.OPEX Total"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

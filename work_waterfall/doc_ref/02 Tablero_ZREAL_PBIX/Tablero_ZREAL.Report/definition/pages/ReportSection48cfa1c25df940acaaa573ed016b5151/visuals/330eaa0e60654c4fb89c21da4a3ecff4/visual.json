@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "330eaa0e60654c4fb89c21da4a3ecff4",
+  "position": {
+    "x": 508,
+    "y": 16,
+    "z": 2000,
+    "height": 110,
+    "width": 200,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "% Indirecto"
+                }
+              },
+              "queryRef": "Base Real.% Indirecto"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

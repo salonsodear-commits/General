@@ -1,0 +1,265 @@
+table 'Base Real'
+	lineageTag: b5c2edb3-672e-41fc-99d4-f7bd758101a6
+
+	measure 'OPEX Total' = SUM ( 'Base Real'[Valor/mon.inf.] )
+		formatString: #,0
+		lineageTag: 9216d247-2cbc-4d87-a06e-041d8f4075ea
+
+	measure 'OPEX Directo' = CALCULATE ( [OPEX Total], 'Base Real'[TIPO CECO] = "Directo" )
+		formatString: #,0
+		lineageTag: b9f180b7-7cb7-4fcf-ac4c-48bf279d9746
+
+	measure 'OPEX Indirecto' = CALCULATE ( [OPEX Total], 'Base Real'[TIPO CECO] = "Indirecto" )
+		formatString: #,0
+		lineageTag: 8c1171e5-626c-4455-a55b-f063f5a7bdf7
+
+	measure '% Directo' = DIVIDE ( [OPEX Directo], [OPEX Total] )
+		formatString: 0.0%
+		lineageTag: 686666bc-52a2-4da8-bab1-3ffcc49dd254
+
+	measure '% Indirecto' = DIVIDE ( [OPEX Indirecto], [OPEX Total] )
+		formatString: 0.0%
+		lineageTag: f05207cc-76d6-417b-86cd-763bf35055d5
+
+	measure 'OPEX Indirecto Transversal' = CALCULATE ( [OPEX Indirecto], NOT ( 'Base Real'[CODIGO PRODUCTO/SECTOR] IN { "N03", "N10", "N12", "N16", "C13" } ) )
+		formatString: #,0
+		lineageTag: c59316e9-9f75-497e-8327-b7bc9639aabf
+
+	measure 'OPEX Indirecto Dedicado OC' = CALCULATE ( [OPEX Indirecto], 'Base Real'[CODIGO PRODUCTO/SECTOR] IN { "N03", "N10", "N12", "N16", "C13" } )
+		formatString: #,0
+		lineageTag: 2b36573f-01e2-41bf-90a4-cda32519ad76
+
+	column 'Valor/mon.inf.'
+		dataType: double
+		lineageTag: f0bea0ad-981e-4d95-85db-885bee3cdab8
+		summarizeBy: sum
+		sourceColumn: Valor/mon.inf.
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'mes año'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b926f627-a2b1-4aae-b28f-80ea90a7c68a
+		summarizeBy: none
+		sourceColumn: mes año
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sociedad
+		dataType: string
+		lineageTag: 236419a3-233a-4419-a779-280009bea458
+		summarizeBy: none
+		sourceColumn: Sociedad
+
+		annotation SummarizationSetBy = Automatic
+
+	column EMPRESA
+		dataType: string
+		lineageTag: b69f9916-9dcc-4c3a-81da-0322332b34c2
+		summarizeBy: none
+		sourceColumn: EMPRESA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Centro de coste'
+		dataType: string
+		lineageTag: 5dbbfe9c-4e0c-43b7-9e72-799d03b0f19c
+		summarizeBy: none
+		sourceColumn: Centro de coste
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clase de coste'
+		dataType: string
+		lineageTag: ff16ad6f-ca1c-46c9-950c-9fcb97a519a1
+		summarizeBy: none
+		sourceColumn: Clase de coste
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Denom.clase de coste'
+		dataType: string
+		lineageTag: 6c20a23f-7525-4849-99ed-fb01054f773a
+		summarizeBy: none
+		sourceColumn: Denom.clase de coste
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TIPO CECO'
+		dataType: string
+		lineageTag: 10fa6b51-3e38-4d96-b613-aefae046e74d
+		summarizeBy: none
+		sourceColumn: TIPO CECO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CODIGO NEGOCIO/AREA'
+		dataType: string
+		lineageTag: 6c8ef8d7-013b-4fc2-b812-c4a393ec7125
+		summarizeBy: none
+		sourceColumn: CODIGO NEGOCIO/AREA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CODIGO PRODUCTO/SECTOR'
+		dataType: string
+		lineageTag: b411c2bb-3c7f-40c5-909f-3076d81b8eba
+		summarizeBy: none
+		sourceColumn: CODIGO PRODUCTO/SECTOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column NEGOCIO/AREA
+		dataType: string
+		lineageTag: 749ca45f-6151-44fe-bb29-767e7d4de4c4
+		summarizeBy: none
+		sourceColumn: NEGOCIO/AREA
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTO/SECTOR
+		dataType: string
+		lineageTag: 263c780f-2091-4d61-8678-66b66c4f3187
+		summarizeBy: none
+		sourceColumn: PRODUCTO/SECTOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GRUPO AREA'
+		dataType: string
+		lineageTag: 258d61b9-e48a-4a11-b7f1-623c53f57c40
+		summarizeBy: none
+		sourceColumn: GRUPO AREA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Denominación de la cuenta'
+		dataType: string
+		lineageTag: c9b71f28-afff-4a78-8b90-8858e65f52fd
+		summarizeBy: none
+		sourceColumn: Denominación de la cuenta
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RUBRO EBITDA'
+		dataType: string
+		lineageTag: 6c90de1f-14fe-4bfe-90e8-37f937215945
+		summarizeBy: none
+		sourceColumn: RUBRO EBITDA
+
+		annotation SummarizationSetBy = Automatic
+
+	column VERTICAL
+		dataType: string
+		lineageTag: 36a1e0d3-3af0-4c10-ac0d-11bb7b4acb07
+		summarizeBy: none
+		sourceColumn: VERTICAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZONA
+		dataType: string
+		lineageTag: 16b7708a-c139-45e2-b39e-d5f389bd3179
+		summarizeBy: none
+		sourceColumn: ZONA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CECO
+		dataType: string
+		lineageTag: cf48f3d3-c412-4d16-827e-8e3c471433e1
+		summarizeBy: none
+		sourceColumn: CECO
+
+		annotation SummarizationSetBy = Automatic
+
+	column Letra
+		dataType: string
+		lineageTag: 79f04477-42d2-4236-bd6f-c81344f3c4d7
+		summarizeBy: none
+		sourceColumn: Letra
+
+		annotation SummarizationSetBy = Automatic
+
+	column NegArea
+		dataType: string
+		lineageTag: ada1f2b6-b029-4876-9c03-1b7769008438
+		summarizeBy: none
+		sourceColumn: NegArea
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProdSector
+		dataType: string
+		lineageTag: fff085ab-0e6c-4c12-8404-b1d6dc5a3017
+		summarizeBy: none
+		sourceColumn: ProdSector
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZonaCECO
+		dataType: string
+		lineageTag: cd946823-6443-4654-a626-c49cbe5df4a3
+		summarizeBy: none
+		sourceColumn: ZonaCECO
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipologia
+		dataType: string
+		lineageTag: 58840efc-dd8f-4da1-95d3-9025e0aa3ad0
+		summarizeBy: none
+		sourceColumn: Tipologia
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZonaHuerfana
+		dataType: string
+		lineageTag: e07f54b4-d88a-4af9-aa7a-9ff5d4976cb5
+		summarizeBy: none
+		sourceColumn: ZonaHuerfana
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Base Real' = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents(RutaArchivo), null, true),
+				    BaseReal = Origen{[Item="Base Real",Kind="Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(BaseReal, [PromoteAllScalars=true]),
+				    Sel = Table.SelectColumns(Encabezados, {
+				        "Sociedad","EMPRESA","Centro de coste","Clase de coste","Denom.clase de coste",
+				        "Valor/mon.inf.","TIPO CECO","CODIGO NEGOCIO/AREA","CODIGO PRODUCTO/SECTOR",
+				        "NEGOCIO/AREA","PRODUCTO/SECTOR","GRUPO AREA","Denominación de la cuenta",
+				        "RUBRO EBITDA","VERTICAL","ZONA","mes año"
+				    }),
+				    CECO = Table.AddColumn(Sel, "CECO", each Text.Trim(Text.From([#"Centro de coste"])), type text),
+				    Letra = Table.AddColumn(CECO, "Letra", each Text.Start([CECO],1), type text),
+				    NegArea = Table.AddColumn(Letra, "NegArea", each Text.Middle([CECO],1,2), type text),
+				    ProdSector = Table.AddColumn(NegArea, "ProdSector", each Text.Middle([CECO],3,3), type text),
+				    ZonaCECO = Table.AddColumn(ProdSector, "ZonaCECO", each Text.Middle([CECO],6,4), type text),
+				    Tipologia = Table.AddColumn(ZonaCECO, "Tipologia", each
+				        if [NegArea]="LE" then "Locación"
+				        else if Text.Select([NegArea],{"0".."9"})=[NegArea] then "Directo"
+				        else "Indirecto", type text),
+				    ZonaHuerfana = Table.AddColumn(Tipologia, "ZonaHuerfana", each
+				        if List.Contains({"901C","902B","902C","915E","916E"}, [ZonaCECO])
+				        then "HUÉRFANA (alta V106 pendiente)" else "OK", type text),
+				    Tipado = Table.TransformColumnTypes(ZonaHuerfana, {
+				        {"Sociedad", type text},{"EMPRESA", type text},{"Centro de coste", type text},
+				        {"Clase de coste", type text},{"Denom.clase de coste", type text},
+				        {"Valor/mon.inf.", type number},{"TIPO CECO", type text},
+				        {"CODIGO NEGOCIO/AREA", type text},{"CODIGO PRODUCTO/SECTOR", type text},
+				        {"NEGOCIO/AREA", type text},{"PRODUCTO/SECTOR", type text},{"GRUPO AREA", type text},
+				        {"Denominación de la cuenta", type text},{"RUBRO EBITDA", type text},
+				        {"VERTICAL", type text},{"ZONA", type text},{"mes año", type datetime}
+				    })
+				in
+				    Tipado
+
+	annotation PBI_ResultType = Exception
+

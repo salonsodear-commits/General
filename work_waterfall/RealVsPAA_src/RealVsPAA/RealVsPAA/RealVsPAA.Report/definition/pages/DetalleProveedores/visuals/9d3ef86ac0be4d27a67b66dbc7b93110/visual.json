@@ -1,0 +1,203 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "9d3ef86ac0be4d27a67b66dbc7b93110",
+  "position": {
+    "x": 288,
+    "y": 415.99999999999994,
+    "z": 2000,
+    "height": 288,
+    "width": 944,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Cuenta"
+                    }
+                  },
+                  "Property": "CAPEX_OPEX"
+                }
+              },
+              "queryRef": "DIM_Cuenta.CAPEX_OPEX",
+              "nativeQueryRef": "Clasificación",
+              "displayName": "Clasificación"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Proveedor"
+                    }
+                  },
+                  "Property": "Proveedor"
+                }
+              },
+              "queryRef": "DIM_Proveedor.Proveedor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Cuenta"
+                    }
+                  },
+                  "Property": "DenominacionCuenta"
+                }
+              },
+              "queryRef": "DIM_Cuenta.DenominacionCuenta",
+              "nativeQueryRef": "DenominacionCuenta"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Ceco"
+                    }
+                  },
+                  "Property": "Ceco"
+                }
+              },
+              "queryRef": "DIM_Ceco.Ceco"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_RealDetalle"
+                    }
+                  },
+                  "Property": "Real Detalle"
+                }
+              },
+              "queryRef": "FACT_RealDetalle.Real Detalle"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_RealDetalle"
+                    }
+                  },
+                  "Property": "Texto"
+                }
+              },
+              "queryRef": "FACT_RealDetalle.Texto"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM_Cuenta"
+                  }
+                },
+                "Property": "CAPEX_OPEX"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "244.4887360791265D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FACT_RealDetalle.Texto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "107.71428720360866D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM_Ceco.Ceco"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "202.11300305361073D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM_Proveedor.Proveedor"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "112.28842027387375D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM_Cuenta.CAPEX_OPEX"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM_Cuenta.CAPEX_OPEX"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

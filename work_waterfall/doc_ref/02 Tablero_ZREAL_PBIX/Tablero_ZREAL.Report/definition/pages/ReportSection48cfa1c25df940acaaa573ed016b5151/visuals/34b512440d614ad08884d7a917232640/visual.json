@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "34b512440d614ad08884d7a917232640",
+  "position": {
+    "x": 16,
+    "y": 412,
+    "z": 6000,
+    "height": 128,
+    "width": 340,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "mes año"
+                }
+              },
+              "queryRef": "Base Real.mes año",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Base Real"
+                    }
+                  },
+                  "Property": "OPEX Total"
+                }
+              },
+              "queryRef": "Base Real.OPEX Total"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,85 @@
+table FACT_RealDetalle
+	lineageTag: e3722840-1823-4879-82a3-fc23a5003aad
+
+	measure 'Real Detalle' = SUM(FACT_RealDetalle[MontoReal])
+		formatString: #,0
+		displayFolder: 05 Detalle
+		lineageTag: 20e70819-40cb-41e4-93e2-158b09efe927
+
+	column Fecha
+		dataType: dateTime
+		summarizeBy: none
+		formatString: dd/mm/yyyy
+		lineageTag: 9298c56f-8365-495c-9aab-7e2380ff7475
+
+		annotation SummarizationSetBy = Automatic
+
+	column VerticalID
+		dataType: int64
+		summarizeBy: none
+		formatString: 0
+		lineageTag: e423d843-83e4-42eb-9476-ffbd437164f0
+
+		annotation SummarizationSetBy = Automatic
+
+	column CuentaID
+		dataType: int64
+		summarizeBy: none
+		formatString: 0
+		lineageTag: a69fd58e-1fb6-4ef1-9543-734a30f45d7d
+
+		annotation SummarizationSetBy = Automatic
+
+	column CecoID
+		dataType: int64
+		summarizeBy: none
+		formatString: 0
+		lineageTag: 8a5b3838-8904-426b-ad7b-91f6e5b6e7a9
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProveedorID
+		dataType: int64
+		summarizeBy: none
+		formatString: 0
+		lineageTag: 2a80a1d8-e3c8-47dc-8251-c2c26c573d5e
+
+		annotation SummarizationSetBy = Automatic
+
+	column MontoReal
+		dataType: double
+		summarizeBy: sum
+		formatString: #,0
+		lineageTag: cb7bad39-bdc5-40ab-ad08-298dd383b9fb
+
+		annotation SummarizationSetBy = Automatic
+
+	column Texto
+		dataType: string
+		summarizeBy: none
+		lineageTag: c7cbc7d0-e6ab-4053-b1e0-1b2de39fcd5b
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FACT_RealDetalle = m
+		mode: import
+		source =
+			let
+			    Base = stgBaseRealCruda,
+			    JoinVert = Table.NestedJoin(Base, {"Vertical"}, DIM_Vertical, {"Vertical"}, "dV", JoinKind.LeftOuter),
+			    ExpVert = Table.ExpandTableColumn(JoinVert, "dV", {"VerticalID"}),
+			    JoinCta = Table.NestedJoin(ExpVert, {"Cuenta"}, DIM_Cuenta, {"Cuenta"}, "dC", JoinKind.LeftOuter),
+			    ExpCta = Table.ExpandTableColumn(JoinCta, "dC", {"CuentaID"}),
+			    JoinCeco = Table.NestedJoin(ExpCta, {"Ceco"}, DIM_Ceco, {"Ceco"}, "dCe", JoinKind.LeftOuter),
+			    ExpCeco = Table.ExpandTableColumn(JoinCeco, "dCe", {"CecoID"}),
+			    JoinProv = Table.NestedJoin(ExpCeco, {"Proveedor"}, DIM_Proveedor, {"Proveedor"}, "dP", JoinKind.LeftOuter),
+			    ExpProv = Table.ExpandTableColumn(JoinProv, "dP", {"ProveedorID"}),
+			    Final = Table.SelectColumns(ExpProv, {"Fecha", "VerticalID", "CuentaID", "CecoID", "ProveedorID", "MontoReal", "Texto"}),
+			    Tipos = Table.TransformColumnTypes(Final, {
+			        {"Fecha", type date}, {"VerticalID", Int64.Type}, {"CuentaID", Int64.Type},
+			        {"CecoID", Int64.Type}, {"ProveedorID", Int64.Type},
+			        {"MontoReal", type number}, {"Texto", type text}
+			    })
+			in
+			    Tipos
+

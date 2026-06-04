@@ -1,0 +1,11 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-ES
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+	annotation PBI_QueryOrder = ["pRutaArchivo", "stgOrigen", "stgRealPA", "stgBaseRealCruda", "DIM_Vertical", "DIM_Cuenta", "DIM_Ceco", "DIM_Proveedor", "DIM_Calendario", "FACT_Presupuesto", "FACT_RealDetalle", "BASE_PLANA_RealvsPA"]
+
+	annotation __PBI_TimeIntelligenceEnabled = 0

@@ -1,0 +1,7 @@
+expression RutaArchivo = "O:\Nuevos Negocios\Juliana\10 TRBJ\12 Ops Comp\09 Proyecto Datos\02 PowerBI\RealVsPAA\Datos\Real y pa 2026v2.xlsx" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 523e6e90-0cc4-46e8-92e6-270021081397
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navegación
+

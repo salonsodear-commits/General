@@ -1,0 +1,9 @@
+createOrReplace
+
+	ref table FACT_Presupuesto
+
+		measure 'Real Año Anterior' = CALCULATE([Real Mes], SAMEPERIODLASTYEAR(DIM_Calendario[Fecha]))
+			formatString: #,0
+			displayFolder: 03 Interanual
+			lineageTag: 769153bc-54bc-4635-b947-2c6900e874a4
+
